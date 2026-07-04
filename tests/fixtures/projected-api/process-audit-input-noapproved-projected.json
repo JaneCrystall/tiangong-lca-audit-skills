@@ -1,0 +1,994 @@
+{
+  "schemaVersion": "page-snapshot-v1",
+  "projectionVersion": "tiangong-api-audit-input-v1",
+  "pageTitle": "天工 API 过程数据（审核不通过样本）",
+  "url": "",
+  "pageStatus": "api_projected",
+  "extractionMethod": "tiangong-api",
+  "extractedAt": "2026-05-20T09:37:43.481Z",
+  "processId": "00000000-0000-0000-0000-000000000002",
+  "processVersion": "01.01.000",
+  "omittedFields": [
+    {
+      "field": "数据集有效期至",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "数据选择和组合原则",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "数据处理和外推原则",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "采样程序",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "数据收集期",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "供应或生产覆盖率",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "年供应量或生产量",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "不确定性调整",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "数据集使用建议",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "工作流和发布状态",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "注册号",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "访问和使用限制",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    }
+  ],
+  "precheckFindings": [
+    {
+      "type": "deterministic_context",
+      "conclusion": "高频非必填字段已按项目策略省略，不应仅因这些字段为空或未发送而输出审核问题。",
+      "fields": [
+        "数据集有效期至",
+        "数据选择和组合原则",
+        "数据处理和外推原则",
+        "采样程序",
+        "数据收集期",
+        "供应或生产覆盖率",
+        "年供应量或生产量",
+        "不确定性调整",
+        "数据集使用建议",
+        "工作流和发布状态",
+        "注册号",
+        "访问和使用限制"
+      ]
+    },
+    {
+      "type": "deterministic_acceptance",
+      "conclusion": "单元过程或黑箱类型的 LCI 方法字段为不适用或空值，按当前口径可接受。",
+      "fields": [
+        "数据集类型",
+        "LCI方法原则",
+        "LCI方法学途径"
+      ]
+    },
+    {
+      "type": "deterministic_context",
+      "conclusion": "功能单位或基准流中的 referenceToReferenceFlow 指向输入/输出交换的内部ID，不是投影表显示序号；当前已匹配内部ID 0 的基准流，不应按显示序号判定基准流错位。",
+      "fields": [
+        "功能单位或基准流",
+        "输入/输出",
+        "内部ID"
+      ]
+    },
+    {
+      "type": "deterministic_context",
+      "conclusion": "输入/输出已读取：输入 7 条，输出 13 条。",
+      "fields": [
+        "输入/输出"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "name": "过程信息",
+      "fields": {
+        "基本名称": {
+          "zh": "磷酸铁锂动力电池湿法回收",
+          "en": "Wet recycling of lithium iron phosphate traction batteries"
+        },
+        "处理、标准、路线": {
+          "zh": "拆解，粉碎，筛分，酸浸，除铁，转化脱杂，盐酸蒸馏回收",
+          "en": "Disassembly, crushing, screening, acid leaching, iron removal, impurity conversion and removal, hydrochloric acid distillation recovery"
+        },
+        "混合和位置类型": {
+          "zh": "生产混合，在工厂",
+          "en": "Production mix, at plant"
+        },
+        "数据集一般性说明": {
+          "zh": "本数据集描述中国磷酸铁锂动力电池湿法回收过程的清单数据，功能单位为处理 1 kg 废弃磷酸铁锂电池。系统边界从废弃电池进入回收设施开始，到产出氯化锂固体及各种固体废物和大气污染物结束。主要输入包括废弃 LFP 电池、盐酸（30%）、过氧化钠（7.5%）、氢氧化钠（32%）、氯化钙、去离子水和电力。主要输出为氯化锂固体产品，以及废弃塑料套管、废弃分离器、废弃 BMS、废铜、废铝、废石墨、其他固体废物，以及粉尘、氟化氢、挥发性有机物、盐酸雾等大气污染物。数据来源于安徽道明能源科技有限公司年回收 10 kt 废锂电池拆解及综合利用项目的环境影响报告。",
+          "en": "This dataset describes the inventory for the wet recycling process of spent lithium iron phosphate traction batteries in China. The functional unit is treatment of 1 kg of spent LFP battery. The system boundary starts when the spent battery enters the recycling facility and ends when solid lithium chloride product and various solid wastes and air pollutants are generated. Main inputs include spent LFP battery, hydrochloric acid (30%), sodium peroxide (7.5%), sodium hydroxide (32%), calcium chloride, deionized water and electricity. Main outputs are lithium chloride solid product, together with waste plastic casing, waste separator, waste BMS, waste copper, waste aluminium, waste graphite, other solid wastes, as well as air pollutants including dust, hydrogen fluoride, volatile organic compounds and hydrochloric acid mist. The data are sourced from the environmental impact report of a 10 kt per year spent lithium battery disassembly and comprehensive utilization project of Anhui Daoming Energy Technology Co., Ltd.\n\nThis dataset describes the inventory for the wet recycling process of spent lithium iron phosphate traction batteries in China. The functional unit is treatment of 1 kg of spent LFP battery. The system boundary starts when the spent battery enters the recycling facility and ends when solid lithium chloride product and various solid wastes and air pollutants are generated. Main inputs include spent LFP battery, hydrochloric acid (30%), sodium peroxide (7.5%), sodium hydroxide (32%), calcium chloride, deionized water and electricity. Main outputs are lithium chloride solid product, together with waste plastic casing, waste separator, waste BMS, waste copper, waste aluminium, waste graphite, other solid wastes, as well as air pollutants including dust, hydrogen fluoride, volatile organic compounds and hydrochloric acid mist. The data are sourced from the environmental impact report of a 10 kt per year spent lithium battery disassembly and comprehensive utilization project of Anhui Daoming Energy Technology Co., Ltd.\n\nThis dataset describes the inventory for the wet recycling process of spent lithium iron phosphate traction batteries in China. The functional unit is treatment of 1 kg of spent LFP battery. The system boundary starts when the spent battery enters the recycling facility and ends when solid lithium chloride product and various solid wastes and air pollutants are generated. Main inputs include spent LFP battery, hydrochloric acid (30%), sodium peroxide (7.5%), sodium hydroxide (32%), calcium chloride, deionized water and electricity. Main outputs are lithium chloride solid product, together with waste plastic casing, waste separator, waste BMS, waste copper, waste aluminium, waste graphite, other solid wastes, as well as air pollutants including dust, hydrogen fluoride, volatile organic compounds and hydrochloric acid mist. The data are sourced from the environmental impact report of a 10 kt per year spent lithium battery disassembly and comprehensive utilization project of Anhui Daoming Energy Technology Co., Ltd."
+        },
+        "分类": [
+          {
+            "level": "0",
+            "classId": "E",
+            "name": "Water supply; sewerage, waste management and remediation activities"
+          },
+          {
+            "level": "1",
+            "classId": "38",
+            "name": "Waste collection, treatment and disposal, and recovery activities"
+          },
+          {
+            "level": "2",
+            "classId": "383",
+            "name": "Materials and other waste recovery"
+          },
+          {
+            "level": "3",
+            "classId": "3830",
+            "name": "Materials and other waste recovery"
+          }
+        ],
+        "引用数据源标识符": {
+          "type": "source data set",
+          "version": "01.01.000",
+          "description": {
+            "zh": "基于全生命周期的磷酸铁锂动力电池循环\n利用环境影响评价研究",
+            "en": "LFP traction battery production"
+          }
+        },
+        "参考年份": 2020,
+        "地理位置": {
+          "@location": "CN",
+          "descriptionOfRestrictions": [
+            {
+              "#text": "数据代表中国安徽省该企业的典型工艺水平，可作为中国磷酸铁锂电池湿法回收的背景数据。",
+              "@xml:lang": "zh"
+            },
+            {
+              "#text": "The data represent the typical technology level of this enterprise in Anhui province, China, and they can be used as background data for wet recycling of LFP batteries in China.",
+              "@xml:lang": "en"
+            }
+          ]
+        },
+        "技术描述及背景系统": {
+          "zh": "本单元过程的系统边界从废弃磷酸铁锂电池进入回收车间开始，到产出氯化锂固体产品和各类废物结束。主要步骤包括：电池放电后拆解、粉碎、筛分得到粉末；粉末经过盐酸酸浸，过氧化钠氧化除杂，氢氧化钠调节pH，氯化钙转化脱杂，以及盐酸蒸馏回收等工序，最终得到氯化锂固体。工艺流程遵循典型的湿法回收路线。",
+          "en": "The system boundary of this unit process starts when the spent LFP battery enters the recycling workshop and ends when lithium chloride solid product and various wastes are generated. The main steps include: discharging, disassembly, crushing and screening to obtain powder; the powder then undergoes hydrochloric acid leaching, sodium peroxide oxidation for impurity removal, sodium hydroxide pH adjustment, calcium chloride conversion for impurity removal, and hydrochloric acid distillation recovery, finally producing lithium chloride solid. The process follows a typical wet recycling route."
+        },
+        "功能单位或基准流": {
+          "@type": "Reference flow(s)",
+          "referenceToReferenceFlow": "0"
+        }
+      },
+      "missingFields": [
+        "定量产品或过程属性",
+        "同义词",
+        "运营、供应或生产子地点",
+        "产品或工艺的技术用途"
+      ],
+      "tables": [],
+      "pageStatus": "api_projected",
+      "extractedAt": "2026-05-20T09:37:43.481Z"
+    },
+    {
+      "name": "建模信息",
+      "fields": {
+        "数据集类型": "Unit process, single operation",
+        "数据来源、处理和代表性": {
+          "type": "source data set",
+          "version": "01.01.000",
+          "description": {
+            "zh": "基于全生命周期的磷酸铁锂动力电池循环\n利用环境影响评价研究",
+            "en": "LFP traction battery production"
+          }
+        },
+        "使用的数据来源": {
+          "type": "source data set",
+          "version": "01.01.000",
+          "description": {
+            "zh": "基于全生命周期的磷酸铁锂动力电池循环\n利用环境影响评价研究",
+            "en": "LFP traction battery production"
+          }
+        },
+        "数据切断和完整性原则": {
+          "zh": "本数据集覆盖了清单中贡献较大的物料与能源流。对于用量极小的辅助材料或维护物料进行了合理截断。所有输入输出均基于环评报告数据，部分大气污染物排放因子来自计算。质量守恒基本平衡，未计入厂内循环水。",
+          "en": "This dataset covers the material and energy flows that make relevant contributions to the inventory. Items with very small quantities, such as some auxiliary or maintenance materials, are reasonably cut off. All inputs and outputs are based on the environmental impact report, and some air pollutant emission factors come from calculations. Mass balance is approximately closed, and internal recirculating water is not included."
+        }
+      },
+      "missingFields": [
+        "LCI方法原则",
+        "偏离LCI方法原则/解释",
+        "LCI方法学途径",
+        "偏离LCI方法应用/解释"
+      ],
+      "tables": [],
+      "pageStatus": "api_projected",
+      "extractedAt": "2026-05-20T09:37:43.481Z"
+    },
+    {
+      "name": "管理信息",
+      "fields": {
+        "数据录入时间": "2026-05-18T11:51:32.311Z",
+        "数据集格式": {
+          "type": "source data set",
+          "version": "03.00.003",
+          "description": {
+            "en": "ILCD format",
+            "zh": "ILCD 数据格式"
+          }
+        },
+        "数据录入人": {
+          "status": "已填写",
+          "type": "contact data set",
+          "version": "01.01.000"
+        },
+        "数据集生成者/建模者": {
+          "status": "已填写",
+          "type": "contact data set",
+          "version": "01.01.000"
+        },
+        "数据集委托方": {
+          "status": "已填写",
+          "type": "contact data set",
+          "version": "01.01.000"
+        },
+        "预期应用": {
+          "zh": "本数据集预期用于构建废弃磷酸铁锂电池回收利用的生命周期模型，可作为中国背景下湿法回收工艺过程的基础数据，支持动力电池循环利用的环境影响评价、技术对比和情景分析。",
+          "en": "This dataset is intended to be used in life cycle models of spent LFP battery recycling. It can serve as background data for the wet recycling process in the Chinese context, and it supports environmental impact assessment, technology comparison and scenario analysis for power battery circular utilization."
+        },
+        "版权": "false",
+        "许可类型": "Free of charge for all users and uses",
+        "数据集版本": "01.01.000",
+        "永久数据集统一资源标识符": "https://example.invalid/dataset/2",
+        "数据集拥有者": {
+          "status": "已填写",
+          "type": "contact data set",
+          "version": "01.01.000"
+        }
+      },
+      "missingFields": [
+        "转换前原始数据集来源"
+      ],
+      "tables": [],
+      "pageStatus": "api_projected",
+      "extractedAt": "2026-05-20T09:37:43.481Z"
+    },
+    {
+      "name": "输入/输出",
+      "fields": {
+        "输入数量": 7,
+        "输出数量": 13
+      },
+      "tables": [
+        {
+          "caption": "输入",
+          "rows": [
+            {
+              "序号": 1,
+              "内部ID": "0",
+              "方向": "Input",
+              "流": "en: EoL LFP battery; hydro Li/Fe recyc; municipal collection; mass\nzh: 废旧LFP电池; 湿法锂铁回收; 市政收集; 质量",
+              "平均量": "1",
+              "结果量": "1",
+              "数据推导类型/状态": "Measured",
+              "不确定性分布": "",
+              "是否基准流": "是",
+              "流类型": "Waste flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "9",
+                  "name": "Community, social and personal services"
+                },
+                {
+                  "level": "1",
+                  "classId": "94",
+                  "name": "Sewage and waste collection, treatment and disposal and other environmental protection services"
+                },
+                {
+                  "level": "2",
+                  "classId": "943",
+                  "name": "Waste treatment and disposal services"
+                },
+                {
+                  "level": "3",
+                  "classId": "9432",
+                  "name": "Hazardous waste treatment and disposal services"
+                },
+                {
+                  "level": "4",
+                  "classId": "94321",
+                  "name": "Hazardous waste treatment services"
+                }
+              ]
+            },
+            {
+              "序号": 2,
+              "内部ID": "1",
+              "方向": "Input",
+              "流": "en: Hydrochloric acid (30%); Hydrochloric acid production; Production mix, at plant; 30%\nzh: 盐酸; 盐酸的生产; 生产混合，在工厂; 30%",
+              "平均量": "0.0343",
+              "结果量": "0.0343",
+              "数据推导类型/状态": "Measured",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "34",
+                  "name": "Basic chemicals"
+                },
+                {
+                  "level": "2",
+                  "classId": "342",
+                  "name": "Basic inorganic chemicals n.e.c."
+                },
+                {
+                  "level": "3",
+                  "classId": "3423",
+                  "name": "Chemical elements n.e.c.; inorganic acids; inorganic oxygen compounds of boron, silicon and carbon; halogen or sulphur compounds of non-metals; sodium hydroxide; hydroxide and peroxide of magnesium; oxides, hydroxides and peroxides of strontium or barium; aluminium hydroxide; hydrozine and hydroxylamine and their inorganic salts"
+                },
+                {
+                  "level": "4",
+                  "classId": "34231",
+                  "name": "Chemical elements n.e.c.; inorganic acids except phosphoric, nitric and sulphonitric; inorganic oxygen compounds of boron, silicon and carbon; halogen or sulphur compounds of non-metals; sodium hydroxide; hydroxide and peroxide of magnesium; oxides, hydroxides and peroxides of strontium or barium; aluminium hydroxide; hydrozine and hydroxylamine and their inorganic salts"
+                }
+              ]
+            },
+            {
+              "序号": 3,
+              "内部ID": "2",
+              "方向": "Input",
+              "流": "en: Sodium hydroxide（30%）\nzh: 氢氧化钠（30%）",
+              "平均量": "0.0873",
+              "结果量": "0.0873",
+              "数据推导类型/状态": "Measured",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "35",
+                  "name": "Other chemical products; man-made fibres"
+                },
+                {
+                  "level": "2",
+                  "classId": "354",
+                  "name": "Chemical products n.e.c."
+                },
+                {
+                  "level": "3",
+                  "classId": "3549",
+                  "name": "Other chemical products"
+                },
+                {
+                  "level": "4",
+                  "classId": "35499",
+                  "name": "Other chemical products n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 4,
+              "内部ID": "3",
+              "方向": "Input",
+              "流": "zh: 氯化钙，CaCl₂; 消费混合，至终端消费者\nen: Calcium chloride, CaCl2; Consumption mix, to consumer",
+              "平均量": "0.357",
+              "结果量": "0.357",
+              "数据推导类型/状态": "Measured",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "35",
+                  "name": "Other chemical products; man-made fibres"
+                },
+                {
+                  "level": "2",
+                  "classId": "354",
+                  "name": "Chemical products n.e.c."
+                },
+                {
+                  "level": "3",
+                  "classId": "3549",
+                  "name": "Other chemical products"
+                },
+                {
+                  "level": "4",
+                  "classId": "35499",
+                  "name": "Other chemical products n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 5,
+              "内部ID": "4",
+              "方向": "Input",
+              "流": "en: Deionised water; ion exchange or reverse osmosis，pure substance; production mix, at plant\nzh: 去离子水; 离子交换或反渗透，纯净物; 生产混合，在工厂",
+              "平均量": "0.531",
+              "结果量": "0.531",
+              "数据推导类型/状态": "Measured",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "1",
+                  "name": "Ores and minerals; electricity, gas and water"
+                },
+                {
+                  "level": "1",
+                  "classId": "18",
+                  "name": "Natural water"
+                },
+                {
+                  "level": "2",
+                  "classId": "180",
+                  "name": "Natural water"
+                },
+                {
+                  "level": "3",
+                  "classId": "1800",
+                  "name": "Natural water"
+                },
+                {
+                  "level": "4",
+                  "classId": "18000",
+                  "name": "Natural water"
+                }
+              ]
+            },
+            {
+              "序号": 6,
+              "内部ID": "5",
+              "方向": "Input",
+              "流": "zh: 交流电; 电力混合; 消费组合, 到用户; 1-35kV\nen: alternating current; electricity mix; consumption mix; 1-35kV",
+              "平均量": "0.485",
+              "结果量": "0.485",
+              "数据推导类型/状态": "Measured",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "1",
+                  "name": "Ores and minerals; electricity, gas and water"
+                },
+                {
+                  "level": "1",
+                  "classId": "17",
+                  "name": "Electricity, town gas, steam and hot water"
+                },
+                {
+                  "level": "2",
+                  "classId": "171",
+                  "name": "Electrical energy"
+                },
+                {
+                  "level": "3",
+                  "classId": "1710",
+                  "name": "Electrical energy"
+                },
+                {
+                  "level": "4",
+                  "classId": "17100",
+                  "name": "Electrical energy"
+                }
+              ]
+            },
+            {
+              "序号": 17,
+              "内部ID": "16",
+              "方向": "Input",
+              "流": "zh: 过氧化钠; 工业级，7.5% 水溶液; 单一物质\nen: Sodium peroxide; Industrial grade, 7.5% aqueous solution; Single substance",
+              "平均量": "0.0954",
+              "结果量": "0.0954",
+              "数据推导类型/状态": "Measured",
+              "不确定性分布": "",
+              "是否基准流": ""
+            }
+          ],
+          "rowCount": 7
+        },
+        {
+          "caption": "输出",
+          "rows": [
+            {
+              "序号": 7,
+              "内部ID": "6",
+              "方向": "Output",
+              "流": "en: Lithium chloride; hydrometallurgical recycling route; Production mix, at plant\nzh: 氯化锂; 湿法冶金回收路线; 生产混合，在工厂",
+              "平均量": "0.357",
+              "结果量": "0.357",
+              "数据推导类型/状态": "Measured",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "4",
+                  "name": "Metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "42",
+                  "name": "Fabricated metal products, except machinery and equipment"
+                },
+                {
+                  "level": "2",
+                  "classId": "429",
+                  "name": "Other fabricated metal products"
+                },
+                {
+                  "level": "3",
+                  "classId": "4299",
+                  "name": "Other metal goods"
+                },
+                {
+                  "level": "4",
+                  "classId": "42999",
+                  "name": "Metal goods n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 8,
+              "内部ID": "7",
+              "方向": "Output",
+              "流": "en: Dust\nzh: 粉尘",
+              "平均量": "0.000176",
+              "结果量": "0.000176",
+              "数据推导类型/状态": "Measured",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Waste flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "39",
+                  "name": "Wastes or scraps"
+                },
+                {
+                  "level": "2",
+                  "classId": "392",
+                  "name": "Non-metal wastes or scraps"
+                },
+                {
+                  "level": "3",
+                  "classId": "3929",
+                  "name": "Other non-metal waste or scrap"
+                },
+                {
+                  "level": "4",
+                  "classId": "39290",
+                  "name": "Other non-metal waste or scrap"
+                }
+              ]
+            },
+            {
+              "序号": 9,
+              "内部ID": "8",
+              "方向": "Output",
+              "流": "en: hydrogen fluoride\nzh: 氟化氢",
+              "平均量": "0.00000239",
+              "结果量": "0.00000239",
+              "数据推导类型/状态": "Measured",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Elementary flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "name": "Emissions"
+                },
+                {
+                  "level": "1",
+                  "name": "Emissions to air"
+                },
+                {
+                  "level": "2",
+                  "name": "Emissions to air, indoor"
+                }
+              ]
+            },
+            {
+              "序号": 10,
+              "内部ID": "9",
+              "方向": "Output",
+              "流": "en: Plastic Waste\nzh: 塑料垃圾",
+              "平均量": "2",
+              "结果量": "2",
+              "数据推导类型/状态": "Measured",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Waste flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "36",
+                  "name": "Rubber and plastics products"
+                },
+                {
+                  "level": "2",
+                  "classId": "369",
+                  "name": "Other plastics products"
+                },
+                {
+                  "level": "3",
+                  "classId": "3699",
+                  "name": "Articles of plastics n.e.c."
+                },
+                {
+                  "level": "4",
+                  "classId": "36990",
+                  "name": "Articles of plastics n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 11,
+              "内部ID": "10",
+              "方向": "Output",
+              "流": "en: Copper Scrap; hydrometallurgical recycling route; Production mix, at plant\nzh: 废铜; 湿法冶金回收路线; 生产混合，在工厂",
+              "平均量": "1",
+              "结果量": "1",
+              "数据推导类型/状态": "Measured",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Waste flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "39",
+                  "name": "Wastes or scraps"
+                },
+                {
+                  "level": "2",
+                  "classId": "393",
+                  "name": "Metal wastes or scraps"
+                },
+                {
+                  "level": "3",
+                  "classId": "3936",
+                  "name": "Waste and scrap of other metals"
+                },
+                {
+                  "level": "4",
+                  "classId": "39361",
+                  "name": "Waste and scrap of copper"
+                }
+              ]
+            },
+            {
+              "序号": 12,
+              "内部ID": "11",
+              "方向": "Output",
+              "流": "en: Waste Graphite; Treatment of waste graphite; Production mix, in the factory\nzh: 废石墨; 废石墨的处理; 生产混合，在工厂",
+              "平均量": "1.5",
+              "结果量": "1.5",
+              "数据推导类型/状态": "Measured",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Waste flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "39",
+                  "name": "Wastes or scraps"
+                },
+                {
+                  "level": "2",
+                  "classId": "392",
+                  "name": "Non-metal wastes or scraps"
+                },
+                {
+                  "level": "3",
+                  "classId": "3929",
+                  "name": "Other non-metal waste or scrap"
+                },
+                {
+                  "level": "4",
+                  "classId": "39290",
+                  "name": "Other non-metal waste or scrap"
+                }
+              ]
+            },
+            {
+              "序号": 13,
+              "内部ID": "12",
+              "方向": "Output",
+              "流": "en: Solid Waste; municipal solid waste\nzh: 固体废物; 生活固体废弃物",
+              "平均量": "5.93",
+              "结果量": "5.93",
+              "数据推导类型/状态": "Measured",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Waste flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "39",
+                  "name": "Wastes or scraps"
+                },
+                {
+                  "level": "2",
+                  "classId": "399",
+                  "name": "Other wastes and scraps"
+                },
+                {
+                  "level": "3",
+                  "classId": "3991",
+                  "name": "Municipal waste"
+                },
+                {
+                  "level": "4",
+                  "classId": "39910",
+                  "name": "Municipal waste"
+                }
+              ]
+            },
+            {
+              "序号": 14,
+              "内部ID": "13",
+              "方向": "Output",
+              "流": "en: procarbazine hydrochloride\nzh: 盐酸氯苯氨酮",
+              "平均量": "4.01",
+              "结果量": "4.01",
+              "数据推导类型/状态": "Measured",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Elementary flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "name": "Emissions"
+                },
+                {
+                  "level": "1",
+                  "name": "Emissions to air"
+                },
+                {
+                  "level": "2",
+                  "name": "Emissions to air, unspecified"
+                }
+              ]
+            },
+            {
+              "序号": 15,
+              "内部ID": "14",
+              "方向": "Output",
+              "流": "en: Aluminium Scrap; Processing and recycling of aluminum waste; Production mix, in the factory\nzh: 铝废料; 铝废料的处理回收; 生产混合，在工厂",
+              "平均量": "0.06",
+              "结果量": "0.06",
+              "数据推导类型/状态": "Measured",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Waste flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "39",
+                  "name": "Wastes or scraps"
+                },
+                {
+                  "level": "2",
+                  "classId": "393",
+                  "name": "Metal wastes or scraps"
+                },
+                {
+                  "level": "3",
+                  "classId": "3936",
+                  "name": "Waste and scrap of other metals"
+                },
+                {
+                  "level": "4",
+                  "classId": "39363",
+                  "name": "Waste and scrap of aluminium"
+                }
+              ]
+            },
+            {
+              "序号": 16,
+              "内部ID": "15",
+              "方向": "Output",
+              "流": "en: Waste BMS\nzh: 废物管理系统",
+              "平均量": "0.03",
+              "结果量": "0.03",
+              "数据推导类型/状态": "Measured",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Waste flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "39",
+                  "name": "Wastes or scraps"
+                },
+                {
+                  "level": "2",
+                  "classId": "399",
+                  "name": "Other wastes and scraps"
+                },
+                {
+                  "level": "3",
+                  "classId": "3999",
+                  "name": "Other wastes n.e.c."
+                },
+                {
+                  "level": "4",
+                  "classId": "39990",
+                  "name": "Other wastes n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 18,
+              "内部ID": "17",
+              "方向": "Output",
+              "流": "zh: 分离器废料; 电池回收产生的分离器废料; 废物流，在回收设施; 100% 固体（混合聚合物）\nen: Waste separator; Waste separator from battery recycling; Waste flow, at recycling facility; 100% solid (mixed polymers)",
+              "平均量": "0.05",
+              "结果量": "0.05",
+              "数据推导类型/状态": "Measured",
+              "不确定性分布": "",
+              "是否基准流": ""
+            },
+            {
+              "序号": 19,
+              "内部ID": "18",
+              "方向": "Output",
+              "流": "en: non-methane volatile organic compounds; composition of exhaust gas; consumption mix; waste gas disposal\nzh: 非甲烷挥发性有机化合物; 废气成分; 消费混合; 废气处置",
+              "平均量": "0.00132",
+              "结果量": "0.00132",
+              "数据推导类型/状态": "Measured",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Waste flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "9",
+                  "name": "Community, social and personal services"
+                },
+                {
+                  "level": "1",
+                  "classId": "94",
+                  "name": "Sewage and waste collection, treatment and disposal and other environmental protection services"
+                },
+                {
+                  "level": "2",
+                  "classId": "949",
+                  "name": "Other environmental protection services n.e.c."
+                },
+                {
+                  "level": "3",
+                  "classId": "9490",
+                  "name": "Other environmental protection services n.e.c."
+                },
+                {
+                  "level": "4",
+                  "classId": "94900",
+                  "name": "Other environmental protection services n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 20,
+              "内部ID": "19",
+              "方向": "Output",
+              "流": "en: Wastewater; Washing wastewater from electrolytic manganese slag-based materials; Production mixing, in the factory\nzh: 废水; 洗涤电解锰渣基材料ED产生的废水; 生产混合，在工厂",
+              "平均量": "1.05",
+              "结果量": "1.05",
+              "数据推导类型/状态": "Estimated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Waste flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "9",
+                  "name": "Community, social and personal services"
+                },
+                {
+                  "level": "1",
+                  "classId": "94",
+                  "name": "Sewage and waste collection, treatment and disposal and other environmental protection services"
+                },
+                {
+                  "level": "2",
+                  "classId": "941",
+                  "name": "Sewerage, sewage treatment and septic tank cleaning services"
+                },
+                {
+                  "level": "3",
+                  "classId": "9411",
+                  "name": "Sewerage and sewage treatment services"
+                },
+                {
+                  "level": "4",
+                  "classId": "94110",
+                  "name": "Sewerage and sewage treatment services"
+                }
+              ]
+            }
+          ],
+          "rowCount": 13
+        }
+      ],
+      "pageStatus": "api_projected",
+      "extractedAt": "2026-05-20T09:37:43.481Z"
+    }
+  ]
+}

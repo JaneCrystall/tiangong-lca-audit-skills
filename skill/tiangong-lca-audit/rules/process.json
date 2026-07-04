@@ -1,0 +1,600 @@
+{
+  "schema_version": "1.0",
+  "dataset_type": "process",
+  "core_dimensions": [
+    "object",
+    "boundary_and_type",
+    "reference_flow",
+    "inventory",
+    "source_and_representativeness",
+    "data_quality_and_metadata"
+  ],
+  "rules": [
+    {
+      "id": "process.core.input_coverage",
+      "dimension": "input_coverage",
+      "rule_type": "deterministic",
+      "severity": "input_gap",
+      "condition": "Name or object, process information, modelling information, exchanges, or version identity is absent.",
+      "evidence_required": ["available windows and fields"],
+      "decision": "Record which core audit dimensions cannot be completed.",
+      "suggestion": "Provide the missing core window or field before requesting a full audit.",
+      "exceptions": ["The user explicitly requests a partial audit."]
+    },
+    {
+      "id": "process.object.consistency",
+      "dimension": "object",
+      "rule_type": "judgment",
+      "severity": "blocking",
+      "condition": "Name, route, general comment, technical description, intended use, and core output do not describe the same process object.",
+      "evidence_required": ["at least two conflicting object descriptions"],
+      "decision": "Treat a verified object mismatch as blocking.",
+      "suggestion": "Revise the name, description, or core output so all locations describe the same process object.",
+      "exceptions": ["The dataset explicitly documents a multi-process or aggregated boundary."]
+    },
+    {
+      "id": "process.type.boundary_match",
+      "dimension": "boundary_and_type",
+      "rule_type": "judgment",
+      "severity": "blocking",
+      "condition": "The selected dataset type appears inconsistent with the documented process boundary or level of aggregation.",
+      "evidence_required": ["dataset type", "technical description", "inventory boundary"],
+      "decision": "Treat as blocking when the mismatch is clear enough to change whether the dataset is interpreted as a single operation, black-box unit process, partly terminated system, or aggregated LCI result.",
+      "suggestion": "Select the dataset type that matches the documented boundary, or explicitly explain the single-operation, black-box, partly terminated, or aggregated role.",
+      "exceptions": ["Multiple internal steps are intentionally represented as one documented black-box process."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "02-数据集组成.md",
+          "sections": ["过程", "单元过程类型", "生命周期清单（LCI）"]
+        },
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "04-数据文档.md",
+          "sections": ["数据集合规要求", "具体要求：生命周期清单数据集"]
+        }
+      ]
+    },
+    {
+      "id": "process.type.partly_terminated_evidence",
+      "dimension": "boundary_and_type",
+      "rule_type": "judgment",
+      "severity": "blocking",
+      "condition": "The dataset type is Partly terminated system, but the dataset does not identify which upstream or background processes have been terminated and which inputs still call background processes.",
+      "evidence_required": ["dataset type", "boundary statement", "linked/background process treatment", "key input roles"],
+      "decision": "Do not accept Partly terminated system solely as a label; require enough evidence to distinguish it from a black-box unit process or LCI result.",
+      "suggestion": "Explain the terminated upstream or background processes and the inputs that still rely on background data, or change the type to the matching unit-process or LCI-result type.",
+      "exceptions": ["The dataset explicitly documents the partly terminated boundary and remaining linked inputs.", "The audit input is partial and does not include modelling information."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "02-数据集组成.md",
+          "sections": ["生命周期清单（LCI）", "部分终止系统"]
+        },
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "04-数据文档.md",
+          "sections": ["与部分分解数据集相关的补充信息合规要求"]
+        }
+      ]
+    },
+    {
+      "id": "process.lci.type_compatibility",
+      "dimension": "boundary_and_type",
+      "rule_type": "deterministic",
+      "severity": "advisory",
+      "condition": "LCI method fields conflict with the selected dataset type or the documented modelling method.",
+      "evidence_required": ["dataset type", "LCI method fields", "method description if present"],
+      "decision": "Empty, '-', or not-applicable values are acceptable for single-operation and black-box unit processes unless other evidence conflicts.",
+      "suggestion": "Align the LCI method fields with the selected dataset type and documented modelling method.",
+      "exceptions": ["Single-operation or black-box unit process with empty, '-', or not-applicable LCI method fields."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "03-数据收集.md",
+          "sections": ["在归因建模中", "在归果建模中", "系统建模"]
+        }
+      ]
+    },
+    {
+      "id": "process.boundary.lifecycle_stage_contradiction",
+      "dimension": "boundary_and_type",
+      "rule_type": "deterministic",
+      "severity": "blocking",
+      "condition": "A lifecycle boundary statement such as cradle-to-gate is used while another visible field explicitly excludes a stage normally covered by that boundary, such as collection or transport, without explaining the narrower boundary.",
+      "evidence_required": ["lifecycle boundary wording", "explicit excluded stage wording", "boundary or cut-off explanation"],
+      "decision": "Treat an unexplained contradiction between lifecycle boundary wording and excluded activities as blocking.",
+      "suggestion": "Rewrite the boundary as the actual included foreground stages and separately list excluded collection, transport, use, or end-of-life activities.",
+      "exceptions": ["The dataset explicitly defines a non-standard cradle-to-gate convention and lists the excluded activities."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "03-数据收集.md",
+          "sections": ["范围定义", "系统边界和截断标准", "排除活动清单"]
+        },
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "04-数据文档.md",
+          "sections": ["数据截断和完整性原则", "偏离数据截断和完整性原则/解释"]
+        }
+      ]
+    },
+    {
+      "id": "process.boundary.cutoff_and_exclusions",
+      "dimension": "boundary_and_type",
+      "rule_type": "judgment",
+      "severity": "manual_review",
+      "condition": "The dataset describes a lifecycle or plant boundary but does not document excluded activities, cross-boundary flows, or quantitative cut-off criteria well enough to reproduce the boundary.",
+      "evidence_required": ["boundary statement", "excluded activities if any", "cross-boundary flows", "quantitative cut-off or coverage statement"],
+      "decision": "Record a manual review item or escalate to blocking when the missing boundary detail changes how the dataset can be used.",
+      "suggestion": "State the included processes, excluded activities, cross-boundary flows, and quantitative cut-off or coverage criterion.",
+      "exceptions": ["A narrow foreground unit process with all key exclusions already visible in the inventory."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "03-数据收集.md",
+          "sections": ["系统边界内的过程", "跨系统边界的流", "排除活动清单", "定量截断标准"]
+        }
+      ]
+    },
+    {
+      "id": "process.boundary.cutoff_placeholder",
+      "dimension": "boundary_and_type",
+      "rule_type": "judgment",
+      "severity": "manual_review",
+      "condition": "The data cut-off and completeness principles field is empty or only contains a placeholder such as '-'.",
+      "evidence_required": ["dataCutOffAndCompletenessPrinciples field", "boundary or inventory context"],
+      "decision": "Create an audit finding when the placeholder prevents reviewers from understanding quantitative cut-off, coverage, exclusions, or cross-boundary flows; do not treat the placeholder as a structural error only.",
+      "suggestion": "Fill in the cut-off and completeness principles, including quantitative cut-off criteria, coverage, exclusions, and cross-boundary flows where applicable.",
+      "exceptions": ["A narrow foreground process documents all exclusions and explains why no quantitative cut-off applies."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "04-数据文档.md",
+          "sections": ["数据截断和完整性原则", "偏离数据截断和完整性原则/解释"]
+        }
+      ]
+    },
+    {
+      "id": "process.reference_flow.quantity_unit",
+      "dimension": "reference_flow",
+      "rule_type": "deterministic",
+      "severity": "blocking",
+      "condition": "The functional unit or reference-flow statement conflicts with the core output quantity, unit, or referenced exchange.",
+      "evidence_required": ["functional unit or reference-flow statement", "core output exchange", "quantity and unit"],
+      "decision": "Treat an unexplained quantity, unit, or reference mismatch as blocking.",
+      "suggestion": "Use one reference quantity and unit across the description, reference flow, and all exchanges.",
+      "exceptions": ["A valid conversion or scaling relationship is explicitly documented."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "03-数据收集.md",
+          "sections": ["功能、功能单位和基准流", "基准流的参考量"]
+        },
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "04-数据文档.md",
+          "sections": ["过程信息", "定量参考"]
+        }
+      ]
+    },
+    {
+      "id": "process.reference_flow.annual_supply_unit",
+      "dimension": "reference_flow",
+      "rule_type": "deterministic",
+      "severity": "advisory",
+      "condition": "Annual supply, production volume, or reference-flow text provides a quantity without an explicit unit or without explaining how it relates to the reference flow.",
+      "evidence_required": ["annual supply or production-volume field", "reference flow", "core output quantity"],
+      "decision": "Treat as advisory unless the missing unit creates a quantity conflict.",
+      "suggestion": "Write the annual supply or production volume with quantity, unit, product name, location, and its relationship to the dataset reference flow.",
+      "exceptions": ["The same field already includes an unambiguous unit and product reference."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "03-数据收集.md",
+          "sections": ["功能、功能单位和基准流", "基准流的参考量"]
+        }
+      ]
+    },
+    {
+      "id": "process.inventory.boundary_consistency",
+      "dimension": "inventory",
+      "rule_type": "deterministic",
+      "severity": "blocking",
+      "condition": "The description explicitly includes or excludes a material, energy, emission, transport, or life-cycle stage, but the exchanges show the opposite without explanation.",
+      "evidence_required": ["explicit boundary statement", "conflicting exchange evidence"],
+      "decision": "Treat the verified contradiction as blocking.",
+      "suggestion": "Correct the boundary statement or exchanges and explain any intentional exclusion.",
+      "exceptions": ["The apparent difference is explained by aggregation, cut-off, or an internal flow."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "03-数据收集.md",
+          "sections": ["系统边界和截断标准", "收集输入和输出流"]
+        }
+      ]
+    },
+    {
+      "id": "process.inventory.key_flow_completeness",
+      "dimension": "inventory",
+      "rule_type": "judgment",
+      "severity": "blocking",
+      "condition": "A key raw material, energy input, product, waste, or emission explicitly required by the described process is absent without explanation.",
+      "evidence_required": ["technical or boundary statement", "exchange list"],
+      "decision": "Treat as blocking when the missing flow materially affects understanding or use of the dataset.",
+      "suggestion": "Add the missing key flow or explain why it is excluded from the dataset boundary.",
+      "exceptions": ["The flow is below a documented cut-off or represented by an aggregated exchange."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "03-数据收集.md",
+          "sections": ["收集输入和输出流", "质量控制"]
+        }
+      ]
+    },
+    {
+      "id": "process.inventory.quantity_plausibility",
+      "dimension": "inventory",
+      "rule_type": "judgment",
+      "severity": "blocking",
+      "condition": "Exchange quantities show an obvious order-of-magnitude, scaling, or physical plausibility problem.",
+      "evidence_required": ["reference quantity", "relevant input and output quantities"],
+      "decision": "Treat clear unexplained scaling or conservation failures as blocking.",
+      "suggestion": "Recalculate all exchanges against the confirmed reference quantity and document any justified imbalance.",
+      "exceptions": ["Mass conversion, water addition, reaction products, emissions, or other balance terms explain the difference."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "05-数据质量评价方法.md",
+          "sections": ["完整性", "物质平衡", "能量平衡"]
+        }
+      ]
+    },
+    {
+      "id": "process.recycling.secondary_material_burden",
+      "dimension": "inventory",
+      "rule_type": "judgment",
+      "severity": "blocking",
+      "condition": "The dataset uses waste, scrap, recycled, reused, or recovered material as a key input, but the burden treatment for collection, sorting, preprocessing, avoided burden, or cut-off/recycled-content modelling is not explained.",
+      "evidence_required": ["secondary or waste input", "reference product", "boundary statement", "recycling or waste burden modelling statement"],
+      "decision": "Treat as blocking when users cannot determine whether upstream primary production, collection, sorting, or preprocessing burdens are included.",
+      "suggestion": "State the recycling modelling approach and whether waste collection, sorting, preprocessing, transport, and upstream primary-material burdens are included or cut off.",
+      "exceptions": ["The dataset is only a foreground gate-to-gate process and explicitly states which secondary-material burdens are outside the boundary."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "03-数据收集.md",
+          "sections": ["在重复使用/回收/恢复中替代多功能过程和系统", "废物和产品报废阶段处理模型"]
+        },
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "06-附录.md",
+          "sections": ["术语和定义", "废物", "截断准则"]
+        }
+      ]
+    },
+    {
+      "id": "process.coproduct.role_and_allocation",
+      "dimension": "inventory",
+      "rule_type": "judgment",
+      "severity": "blocking",
+      "condition": "Multiple valuable outputs exist but their roles, allocation, system expansion, or unallocated joint-process status are not explained.",
+      "evidence_required": ["multiple valuable outputs", "modelling or allocation description"],
+      "decision": "Treat as blocking when the ambiguity changes how the target product result should be interpreted.",
+      "suggestion": "State whether the dataset is an unallocated joint process or document how burdens are assigned to the target product.",
+      "exceptions": ["Additional outputs are clearly internal loops, wastes, or negligible by-products."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "03-数据收集.md",
+          "sections": ["过程和系统的多功能性", "解决归因模型中多功能问题", "分配"]
+        }
+      ]
+    },
+    {
+      "id": "process.allocation.method_traceability",
+      "dimension": "inventory",
+      "rule_type": "judgment",
+      "severity": "blocking",
+      "condition": "The dataset mentions allocation, shared flows, co-products, or a multi-product source study, but does not state the allocation basis, allocated flows, target product quantity, and treatment of product-specific flows.",
+      "evidence_required": ["allocation statement or multi-product evidence", "product outputs", "shared-flow or allocation basis evidence"],
+      "decision": "Treat as blocking when the target product inventory cannot be traced from the stated allocation approach.",
+      "suggestion": "State which flows are product-specific, which flows are shared, the allocation basis such as mass or economic value, and the reference quantity for the target product.",
+      "exceptions": ["The dataset is intentionally unallocated and clearly labelled as a joint-process unit process."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "03-数据收集.md",
+          "sections": ["细分或虚拟细分以避免分配", "分配"]
+        },
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "06-附录.md",
+          "sections": ["术语和定义", "分配", "共产品"]
+        }
+      ]
+    },
+    {
+      "id": "process.flow.semantic_match",
+      "dimension": "inventory",
+      "rule_type": "judgment",
+      "severity": "blocking",
+      "condition": "A flow name, type, classification, direction, or reference unit is clearly incompatible with the represented material or role.",
+      "evidence_required": [
+        "flow name",
+        "flow type",
+        "classification or direction",
+        "unit if relevant",
+        "searched classification candidates when the issue involves classification"
+      ],
+      "decision": "Treat as blocking when the mismatch affects calculation, connection, search, or emission destination; otherwise advisory.",
+      "suggestion": "Choose or create a flow whose name, type, classification, direction, and reference unit match its actual role; when the issue involves classification, include candidate classification paths or candidate ranges and the condition for choosing among them.",
+      "exceptions": ["The platform offers no exact category and the selected near-match is reasonable."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "02-数据集组成.md",
+          "sections": ["基本流", "产品流", "废物流"]
+        },
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "04-数据文档.md",
+          "sections": ["命名", "流命名", "产品和废物流命名"]
+        }
+      ]
+    },
+    {
+      "id": "process.flow.purchased_elementary_input_role",
+      "dimension": "inventory",
+      "rule_type": "judgment",
+      "severity": "manual_review",
+      "condition": "An input exchange is an elementary or resource flow, but the process context describes the same material as a purchased input, raw material, auxiliary material, or consumable.",
+      "evidence_required": ["input exchange direction", "flow type", "flow name", "process context describing purchased or input role"],
+      "decision": "Treat as blocking when visible context clearly shows the exchange is a purchased technosphere input; otherwise mark for manual confirmation and allow an environmental exchange explanation.",
+      "suggestion": "Use a product flow for purchased material inputs, or explain why the exchange is intentionally modelled as an environmental resource flow.",
+      "exceptions": ["The context explicitly describes the exchange as an environmental flow such as uptake from air, water, or ground."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "02-数据集组成.md",
+          "sections": ["基本流", "产品流"]
+        },
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "04-数据文档.md",
+          "sections": ["流命名", "产品和废物流命名"]
+        }
+      ]
+    },
+    {
+      "id": "process.flow.version_identity",
+      "dimension": "inventory",
+      "rule_type": "deterministic",
+      "severity": "input_gap",
+      "condition": "An exchange references a flow dataset UUID or persistent identity, but the flow dataset version is absent.",
+      "evidence_required": ["flow UUID or persistent identity", "flow version field"],
+      "decision": "Record a traceability gap because the exact flow dataset cannot be distinguished from other versions.",
+      "suggestion": "Provide the referenced flow dataset version, or re-export the exchange with complete flow identity metadata.",
+      "exceptions": ["The source system does not expose flow versions and the audit scope is limited to visible page fields."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "04-数据文档.md",
+          "sections": ["基本通用信息", "数据集版本"]
+        }
+      ]
+    },
+    {
+      "id": "process.flow.form_unit_consistency",
+      "dimension": "inventory",
+      "rule_type": "judgment",
+      "severity": "blocking",
+      "condition": "A flow's physical form in the name or description, such as liquefied, gaseous, solution, wet, or dry, is incompatible with the reference property or exchange unit without a documented conversion.",
+      "evidence_required": ["flow name or description", "reference property or unit", "conversion or form explanation if any"],
+      "decision": "Treat as blocking when the mismatch can change inventory amounts, background-flow selection, or unit conversion.",
+      "suggestion": "Select a flow whose physical form matches the measured unit, or document the conversion between mass, volume, concentration, or physical state.",
+      "exceptions": ["The field explicitly states the measured state and conversion factor."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "03-数据收集.md",
+          "sections": ["收集输入和输出流", "特定基本流类型"]
+        },
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "04-数据文档.md",
+          "sections": ["流命名"]
+        }
+      ]
+    },
+    {
+      "id": "process.inventory.water_balance_boundary",
+      "dimension": "inventory",
+      "rule_type": "judgment",
+      "severity": "blocking",
+      "condition": "The dataset includes material water input, wastewater indicators, or water-body emissions, but the boundary does not explain water use, recycling, evaporation, sludge moisture, or internal/external wastewater treatment.",
+      "evidence_required": ["water input or water emission", "wastewater or water treatment boundary", "water fate explanation"],
+      "decision": "Treat as blocking when water-related emissions or waste treatment cannot be interpreted inside or outside the process boundary; otherwise record a manual review item.",
+      "suggestion": "Explain the water balance and wastewater treatment boundary, including recycled water, losses, evaporation, sludge moisture, and whether treatment is internal or external.",
+      "exceptions": ["Water is a minor ancillary input with no water emissions or treatment claims."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "05-数据质量评价方法.md",
+          "sections": ["完整性", "水", "物质平衡"]
+        }
+      ]
+    },
+    {
+      "id": "process.flow.review_status",
+      "dimension": "inventory",
+      "rule_type": "deterministic",
+      "severity": "advisory",
+      "condition": "A flow is marked unreviewed but no content error is visible.",
+      "evidence_required": ["flow review status"],
+      "decision": "Do not create an audit finding solely from unreviewed status.",
+      "suggestion": "No change is required unless the flow content itself is incorrect.",
+      "exceptions": []
+    },
+    {
+      "id": "process.classification.process_fit",
+      "dimension": "source_and_representativeness",
+      "rule_type": "judgment",
+      "severity": "advisory",
+      "condition": "The classification path is broadly related but less specific than the product and process described by the dataset.",
+      "evidence_required": ["current classification", "product or process description", "searched classification candidates"],
+      "decision": "Do not reject solely because a more specific classification may exist; raise advisory guidance when a better candidate is supported by taxonomy search.",
+      "suggestion": "Use the closest available classification for the product and process, include candidate classification paths or candidate ranges, and document the process attribute when no exact path exists.",
+      "exceptions": ["The current path is the best available taxonomy match or the taxonomy has no closer category."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "02-数据集组成.md",
+          "sections": ["行业或产品类型分类"]
+        },
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "06-附录.md",
+          "sections": ["分类体系"]
+        }
+      ]
+    },
+    {
+      "id": "process.source.traceability",
+      "dimension": "source_and_representativeness",
+      "rule_type": "judgment",
+      "severity": "blocking",
+      "condition": "Key data, parameters, or calculation logic cannot be traced sufficiently to assess the dataset.",
+      "evidence_required": ["source description", "key parameter or calculation evidence"],
+      "decision": "Treat as blocking when lack of traceability prevents verification; otherwise advisory.",
+      "suggestion": "Identify the source and explain the treatment or calculation of the key data.",
+      "exceptions": ["A cited source or processing report already provides adequate traceability.", "Calculated status alone is not an error."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "03-数据收集.md",
+          "sections": ["所需数据和信息类型/质量/来源", "报告记录"]
+        },
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "04-数据文档.md",
+          "sections": ["报告", "数据集 LCA 报告，背景信息"]
+        }
+      ]
+    },
+    {
+      "id": "process.description.source_content_attribution",
+      "dimension": "source_and_representativeness",
+      "rule_type": "judgment",
+      "severity": "blocking",
+      "condition": "General comments or technical descriptions present source-study project background, LCIA results, benchmark shares, or background parameters without distinguishing them from the current dataset's actual modelling content.",
+      "evidence_required": ["source citation", "source-derived statement in a description field", "current dataset boundary or modelling statement"],
+      "decision": "Do not flag the use of cited literature itself. Treat the issue as blocking when the wording can cause source-study results or parameters to be interpreted as the current dataset's own results or modelling basis; otherwise advisory.",
+      "suggestion": "Delete or label the source-study content and rewrite the description around the current dataset's reference flow, boundary, exchanges, data treatment, and linked background processes.",
+      "exceptions": ["The source-derived content is clearly labelled and its relationship to the current dataset is explained.", "The cited source content accurately describes the current dataset without creating ambiguity."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "04-数据文档.md",
+          "sections": ["报告", "数据集 LCA 报告，背景信息"]
+        }
+      ]
+    },
+    {
+      "id": "process.representativeness.consistency",
+      "dimension": "source_and_representativeness",
+      "rule_type": "judgment",
+      "severity": "manual_review",
+      "condition": "Reference year, geography, technology, source, and intended use do not appear mutually supportive.",
+      "evidence_required": ["time", "geography", "technology", "source or intended use"],
+      "decision": "Treat as blocking only when a clear contradiction materially affects applicability.",
+      "suggestion": "Align the representativeness description with the actual source, year, geography, and technology.",
+      "exceptions": ["The dataset explicitly explains why broader or proxy representation is appropriate."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "05-数据质量评价方法.md",
+          "sections": ["技术代表性", "地理代表性", "时间代表性", "精度"]
+        }
+      ]
+    },
+    {
+      "id": "process.metadata.dqr_completeness",
+      "dimension": "data_quality_and_metadata",
+      "rule_type": "judgment",
+      "severity": "manual_review",
+      "condition": "The dataset lacks enough data-quality information to understand technical, geographical, temporal, precision, completeness, consistency, or total DQR evaluation.",
+      "evidence_required": ["data quality indicators", "representativeness statement", "data-quality or review metadata"],
+      "decision": "Do not automatically reject a dataset solely for missing optional DQR fields; escalate when the missing DQR information prevents judging representativeness or reuse.",
+      "suggestion": "Document data quality using technical, geographical, temporal, precision, completeness, consistency, and total DQR information where applicable.",
+      "exceptions": ["The current platform configuration does not expose DQR fields and the audit scope is content-only."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "05-数据质量评价方法.md",
+          "sections": ["数据质量评价方法", "DQR", "完整性", "一致性"]
+        }
+      ]
+    },
+    {
+      "id": "process.metadata.goal_scope_documentation",
+      "dimension": "data_quality_and_metadata",
+      "rule_type": "judgment",
+      "severity": "advisory",
+      "condition": "Goal and scope metadata such as intended application, limitations, audience, comparative-use statement, or commissioner is missing or too vague for reuse.",
+      "evidence_required": ["goal and scope metadata", "commissioner or owner", "intended application"],
+      "decision": "Treat as advisory unless the absence prevents understanding the dataset's valid use.",
+      "suggestion": "Complete the intended application, limitations, audience or comparative-use statement, and commissioner/owner information needed for traceability.",
+      "exceptions": ["The audit task is limited to inventory content and the missing field is not required by the platform."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "03-数据收集.md",
+          "sections": ["目标定义", "范围定义"]
+        }
+      ]
+    },
+    {
+      "id": "process.metadata.review_report_traceability",
+      "dimension": "data_quality_and_metadata",
+      "rule_type": "judgment",
+      "severity": "advisory",
+      "condition": "Review, background report, data generator, modeler, or documentor information is missing or not linked well enough for audit traceability.",
+      "evidence_required": ["review metadata", "background report source", "data generator/modeler/documentor fields"],
+      "decision": "Treat as advisory unless the missing traceability blocks verification of key data or review status.",
+      "suggestion": "Link the background report or review report and identify the data generator, modeler, or documentor when the platform exposes those fields.",
+      "exceptions": ["Equivalent source and owner information already provides traceability.", "The platform does not expose a dedicated modeler field."]
+      ,
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "04-数据文档.md",
+          "sections": ["数据集 LCA 报告，背景信息", "具体要求：元数据信息"]
+        },
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "06-附录.md",
+          "sections": ["数据生成者", "数据文档编制者"]
+        }
+      ]
+    },
+    {
+      "id": "process.management.identity",
+      "dimension": "management",
+      "rule_type": "deterministic",
+      "severity": "input_gap",
+      "condition": "Version, format, owner or commissioner, data entry identity, or persistent identifier required for publication cannot be identified.",
+      "evidence_required": ["management information"],
+      "decision": "Record an information gap for publication readiness; do not mechanically flag optional workflow fields.",
+      "suggestion": "Complete the minimum identity and version information needed to trace and publish the dataset.",
+      "exceptions": ["The current task is a content-only preliminary audit."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "04-数据文档.md",
+          "sections": ["具体要求：元数据信息", "基本通用信息"]
+        }
+      ]
+    }
+  ]
+}

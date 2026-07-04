@@ -1,0 +1,137 @@
+{
+  "schema_version": "1.0",
+  "dataset_type": "model",
+  "core_dimensions": [
+    "goal",
+    "structure",
+    "linked_processes",
+    "overall_consistency",
+    "data_quality_and_metadata"
+  ],
+  "rules": [
+    {
+      "id": "model.core.input_coverage",
+      "dimension": "input_coverage",
+      "rule_type": "deterministic",
+      "severity": "input_gap",
+      "condition": "Model goal, target quantity, graph or connection structure, linked process list, or key linked process data is absent.",
+      "evidence_required": ["available model sections and linked process data"],
+      "decision": "Record which core model checks cannot be completed.",
+      "suggestion": "Provide the missing model structure or linked process data before requesting a full audit.",
+      "exceptions": ["The user explicitly requests a partial audit."]
+    },
+    {
+      "id": "model.goal.consistency",
+      "dimension": "goal",
+      "rule_type": "judgment",
+      "severity": "blocking",
+      "condition": "Model name, target product, functional unit or target quantity, description, and intended use do not identify the same modelling goal.",
+      "evidence_required": ["at least two goal-related fields"],
+      "decision": "Treat a verified goal mismatch as blocking.",
+      "suggestion": "Align the model name, target product, target quantity, description, and intended use.",
+      "exceptions": ["The model explicitly documents multiple scenarios or outputs."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "03-数据收集.md",
+          "sections": ["目标定义", "功能、功能单位和基准流"]
+        }
+      ]
+    },
+    {
+      "id": "model.structure.connectivity",
+      "dimension": "structure",
+      "rule_type": "deterministic",
+      "severity": "blocking",
+      "condition": "A key node is missing, duplicated, isolated, reversed, or not connected to the target output.",
+      "evidence_required": ["model nodes and connections"],
+      "decision": "Treat a verified broken key path as blocking.",
+      "suggestion": "Add, remove, or reconnect the affected node so the key path supports the target output.",
+      "exceptions": ["The node is intentionally excluded and the boundary explains the exclusion."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "03-数据收集.md",
+          "sections": ["系统边界内的过程", "跨系统边界的流", "系统建模"]
+        }
+      ]
+    },
+    {
+      "id": "model.linked_process.role_match",
+      "dimension": "linked_processes",
+      "rule_type": "judgment",
+      "severity": "blocking",
+      "condition": "A linked process object, reference flow, quantity, or role does not match the model connection.",
+      "evidence_required": ["model connection", "linked process identity and reference flow"],
+      "decision": "Treat a verified mismatch that affects model results as blocking.",
+      "suggestion": "Select the correct process or align its reference flow and connection quantity with the model role.",
+      "exceptions": ["A documented proxy or substitution is intentionally used."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "03-数据收集.md",
+          "sections": ["次级数据集选择", "系统建模"]
+        }
+      ]
+    },
+    {
+      "id": "model.linked_process.audit",
+      "dimension": "linked_processes",
+      "rule_type": "deterministic",
+      "severity": "input_gap",
+      "condition": "A key linked process has not been supplied or audited.",
+      "evidence_required": ["key linked process list", "process audit summaries"],
+      "decision": "Do not confirm model completeness without reviewing key linked processes.",
+      "suggestion": "Provide and audit each key linked process, then summarize whether its findings affect the model.",
+      "exceptions": [],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "05-数据质量评价方法.md",
+          "sections": ["数据审查", "数据验证"]
+        }
+      ]
+    },
+    {
+      "id": "model.overall.boundary_method",
+      "dimension": "overall_consistency",
+      "rule_type": "judgment",
+      "severity": "blocking",
+      "condition": "Model boundary, method, linked processes, or target quantity are mutually inconsistent.",
+      "evidence_required": ["model method and boundary", "structure", "linked process summaries"],
+      "decision": "Treat a verified inconsistency that changes model interpretation or results as blocking.",
+      "suggestion": "Align the model method, boundary, structure, and linked process roles with the confirmed target.",
+      "exceptions": ["The model explicitly documents scenario-specific or proxy treatment."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "03-数据收集.md",
+          "sections": ["范围定义", "系统边界和截断标准", "计算 LCI"]
+        }
+      ]
+    },
+    {
+      "id": "model.metadata.goal_scope_quality",
+      "dimension": "data_quality_and_metadata",
+      "rule_type": "judgment",
+      "severity": "manual_review",
+      "condition": "The model lacks enough goal, scope, linked-process quality, review, or background-report metadata to judge reuse and traceability.",
+      "evidence_required": ["goal and scope metadata", "linked-process quality summaries", "review or background report metadata"],
+      "decision": "Do not confirm a full model pass when missing metadata prevents checking model representativeness or linked-process quality.",
+      "suggestion": "Document the model goal, intended use, boundary, linked-process quality basis, review information, and background report references.",
+      "exceptions": ["The current audit is explicitly limited to structural inspection only."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "04-数据文档.md",
+          "sections": ["数据集 LCA 报告，背景信息", "与 LCI 结果相关的补充信息合规要求"]
+        },
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "05-数据质量评价方法.md",
+          "sections": ["数据质量评价方法", "数据审查"]
+        }
+      ]
+    }
+  ]
+}

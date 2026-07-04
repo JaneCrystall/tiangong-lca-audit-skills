@@ -1,0 +1,11 @@
+{
+  "name": "tiangong-lca-audit-skill",
+  "private": true,
+  "description": "Development dependencies for Tiangong LCA audit structure validation",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "dependencies": {
+    "@tiangong-lca/tidas-sdk": "^0.1.44"
+  }
+}

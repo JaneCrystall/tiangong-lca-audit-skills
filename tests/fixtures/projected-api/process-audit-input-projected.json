@@ -1,0 +1,2373 @@
+{
+  "schemaVersion": "page-snapshot-v1",
+  "projectionVersion": "tiangong-api-audit-input-v1",
+  "pageTitle": "天工 API 过程数据",
+  "url": "",
+  "pageStatus": "api_projected",
+  "extractionMethod": "tiangong-api",
+  "extractedAt": "2026-05-20T09:22:22.199Z",
+  "processId": "00000000-0000-0000-0000-000000000003",
+  "processVersion": "01.01.000",
+  "omittedFields": [
+    {
+      "field": "数据集有效期至",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "数据选择和组合原则",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "数据处理和外推原则",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "采样程序",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "数据收集期",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "供应或生产覆盖率",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "年供应量或生产量",
+      "reason": "按项目策略省略原始值"
+    },
+    {
+      "field": "不确定性调整",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "数据集使用建议",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "工作流和发布状态",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "注册号",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "访问和使用限制",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    }
+  ],
+  "precheckFindings": [
+    {
+      "type": "deterministic_context",
+      "conclusion": "高频非必填字段已按项目策略省略，不应仅因这些字段为空或未发送而输出审核问题。",
+      "fields": [
+        "数据集有效期至",
+        "数据选择和组合原则",
+        "数据处理和外推原则",
+        "采样程序",
+        "数据收集期",
+        "供应或生产覆盖率",
+        "年供应量或生产量",
+        "不确定性调整",
+        "数据集使用建议",
+        "工作流和发布状态",
+        "注册号",
+        "访问和使用限制"
+      ]
+    },
+    {
+      "type": "deterministic_context",
+      "conclusion": "功能单位或基准流中的 referenceToReferenceFlow 指向输入/输出交换的内部ID，不是投影表显示序号；当前已匹配内部ID 15 的基准流，不应按显示序号判定基准流错位。",
+      "fields": [
+        "功能单位或基准流",
+        "输入/输出",
+        "内部ID"
+      ]
+    },
+    {
+      "type": "deterministic_context",
+      "conclusion": "已识别基准输出流及结果量；定量产品或过程属性缺失可作为建议补充，但在基准输出和数量已明确时不应单独作为必改或不通过理由。",
+      "fields": [
+        "功能单位或基准流",
+        "定量产品或过程属性",
+        "输入/输出"
+      ]
+    },
+    {
+      "type": "deterministic_context",
+      "conclusion": "输入/输出已读取：输入 27 条，输出 26 条。",
+      "fields": [
+        "输入/输出"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "name": "过程信息",
+      "fields": {
+        "基本名称": {
+          "zh": "加氢裂化(HC)重石脑油生产",
+          "en": "Production of hydrocracked heavy naphtha"
+        },
+        "处理、标准、路线": {
+          "zh": "废渣油原料，Axens单段/两段加氢裂化工艺",
+          "en": "Residue oil feedstock, Axens single-stage/two-stage hydrocracking process"
+        },
+        "混合和位置类型": {
+          "zh": "生产混合，在工厂",
+          "en": "production mix, at plant"
+        },
+        "数据集一般性说明": {
+          "zh": "石脑油是石油产品之一，又叫化工轻油、粗汽油，是以原油或其他原料加工生产的用于化工原料的轻质油，主要用作化工原料。本数据集描述了基于废渣油原料的加氢裂化工艺生产重石脑油的过程，涵盖1#加氢裂化装置、2#加氢裂化装置和沸腾床渣油加氢装置的联合工艺流程。该工艺利用减压渣油、焦化蜡油等重质油料，通过加氢脱硫、脱氮及裂化反应，制得重石脑油作为主要产品，适用于连续重整装置原料。数据集包括原料组成、工艺参数、能源消耗、污染物排放等关键信息，符合生命周期评价（LCA）和ILCD命名规范要求。",
+          "en": "Naphtha is one of the petroleum products, also known as chemical light oil or crude gasoline. It is a light oil processed from crude oil or other raw materials and used as a chemical raw material, mainly serving as a chemical raw material. This dataset describes the process of producing heavy naphtha through the hydrocracking process based on waste residue oil as raw material, covering the combined process flow of the No. 1 hydrocracking unit, No. 2 hydrocracking unit, and the fluidized bed residue oil hydrocracking unit. This process utilizes heavy oil materials such as vacuum residue oil and coking wax oil, and through hydrogenation desulfurization, denitrification, and cracking reactions, heavy naphtha is produced as the main product, suitable for use as the raw material of continuous reforming units. The dataset includes key information such as raw material composition, process parameters, energy consumption, and pollutant emissions, and complies with the requirements of the Life Cycle Assessment (LCA) and ILCD naming conventions."
+        },
+        "分类": [
+          {
+            "level": "0",
+            "classId": "C",
+            "name": "Manufacturing"
+          },
+          {
+            "level": "1",
+            "classId": "19",
+            "name": "Manufacture of coke and refined petroleum products"
+          },
+          {
+            "level": "2",
+            "classId": "192",
+            "name": "Manufacture of refined petroleum products; manufacture of fossil fuel products"
+          },
+          {
+            "level": "3",
+            "classId": "1920",
+            "name": "Manufacture of refined petroleum products; manufacture of fossil fuel products"
+          }
+        ],
+        "参考年份": 2018,
+        "地理位置": {
+          "@location": "CN-JS-LYG"
+        },
+        "产品或工艺的技术用途": {
+          "zh": "加氢裂化重石脑油主要用于连续重整装置的原料，进一步用于芳烃和高辛烷值汽油的生产；也可作为乙烯裂解原料，用于石化产业链下游化学品的合成。该产品具有低硫、低氮特性，适用于清洁燃料和化工原料的高效制备。",
+          "en": "Hydrocracked heavy naphtha serves primarily as feedstock for continuous reforming units, used in the production of aromatics and high-octane gasoline. It can also be used as feedstock for ethylene cracking, supporting downstream chemical synthesis in the petrochemical industry. The product features low sulfur and nitrogen content, making it suitable for efficient production of clean fuels and chemical raw materials."
+        },
+        "技术描述及背景系统": {
+          "zh": "加氢裂化重石脑油生产采用Axens公司的加氢裂化技术，包括三种工艺装置：1#加氢裂化装置采用单段一次通过流程，以直馏蜡油为原料，主要产品为重石脑油和航煤；2#加氢裂化装置采用两段全循环流程，处理多种蜡油和柴油，生产轻重石脑油和尾油；沸腾床渣油加氢装置采用H-Oil技术，处理高硫渣油，转化率高达80%。整个系统以新氢、循环氢为反应介质，结合分馏塔进行产品分离。工艺流程包括反应、分馏、脱硫、催化剂再生等关键步骤，形成一个完整的重油轻质化系统。",
+          "en": "The production of heavy naphtha from hydrocracking uses Axens company's hydrocracking technology, which includes three process units: The #1 hydrocracking unit adopts a single-pass one-stage process, using straight-run wax oil as raw material, with main products being heavy naphtha and jet fuel; The #2 hydrocracking unit employs a two-stage full recycle process, processing various wax oils and diesel to produce light and heavy naphtha and tail oil; The fluidized bed residue hydroprocessing unit uses H-Oil technology, treating high-sulfur residue oil with a conversion rate as high as 80%. The entire system uses fresh hydrogen and recycle hydrogen as the reaction media, combined with fractionation towers for product separation. The process flow includes key steps such as reaction, fractionation, desulfurization, and catalyst regeneration, forming a complete heavy oil upgrading system."
+        },
+        "功能单位或基准流": {
+          "@type": "Reference flow(s)",
+          "referenceToReferenceFlow": "15"
+        }
+      },
+      "missingFields": [
+        "定量产品或过程属性",
+        "同义词",
+        "引用数据源标识符",
+        "运营、供应或生产子地点"
+      ],
+      "tables": [],
+      "pageStatus": "api_projected",
+      "extractedAt": "2026-05-20T09:22:22.199Z"
+    },
+    {
+      "name": "建模信息",
+      "fields": {
+        "数据集类型": "Unit process, single operation",
+        "LCI方法原则": "Attributional",
+        "数据来源、处理和代表性": {
+          "type": "source data set",
+          "version": "01.01.000",
+          "description": {
+            "zh": "盛虹环评报告",
+            "en": "ShengHongEnvironmental Impact Assessment Report"
+          }
+        },
+        "使用的数据来源": {
+          "type": "source data set",
+          "version": "01.01.000",
+          "description": {
+            "zh": "盛虹环评报告",
+            "en": "ShengHongEnvironmental Impact Assessment Report"
+          }
+        },
+        "数据切断和完整性原则": {
+          "zh": "模型数据遵循生命周期评价的数据完整性原则，纳入主要环境影响显著的投入产出要素，包括原料油、氢气、电耗、蒸汽等高占比因子。辅助材料如缓蚀剂、阻垢剂等用量较小且环境影响较低的物料被合理切断。数据来源包括工艺流程设计、实际运行记录、物料平衡与排放监测，确保数据准确性和代表性，符合ILCD与ISO 14040系列标准要求。",
+          "en": "The model data adheres to the principle of data integrity in life cycle assessment, incorporating input and output factors with significant environmental impacts, such as raw oil, hydrogen, electricity consumption, and steam, which account for a high proportion. Auxiliary materials with low usage and minor environmental impacts, such as corrosion inhibitors and scale inhibitors, are reasonably excluded. Data sources include process design, actual operation records, material balance, and emission monitoring, ensuring the accuracy and representativeness of the data, in compliance with ILCD and ISO 14040 series standards."
+        }
+      },
+      "missingFields": [
+        "偏离LCI方法原则/解释",
+        "LCI方法学途径",
+        "偏离LCI方法应用/解释"
+      ],
+      "tables": [],
+      "pageStatus": "api_projected",
+      "extractedAt": "2026-05-20T09:22:22.199Z"
+    },
+    {
+      "name": "管理信息",
+      "fields": {
+        "数据录入时间": "2026-05-20T02:26:36.302Z",
+        "数据集格式": {
+          "type": "source data set",
+          "version": "03.00.003",
+          "description": {
+            "en": "ILCD format",
+            "zh": "ILCD 数据格式"
+          }
+        },
+        "数据录入人": {
+          "status": "已填写",
+          "type": "contact data set",
+          "version": "01.01.000"
+        },
+        "数据集委托方": {
+          "status": "已填写",
+          "type": "contact data set",
+          "version": "01.00.000"
+        },
+        "预期应用": {
+          "zh": "本数据集可用于生命周期评价研究，量化重油加氢裂化工艺的环境影响，支持与传统重石脑油生产工艺的碳足迹对比分析；在工程应用中，可为工艺优化、设备选型、能源配置及资源综合利用提供数据支撑；在政策与规划层面，可用于清洁生产审核、绿色工厂认证、循环经济园区评估及碳交易机制设计；同时，也可服务于企业绿色供应链管理、可持续产品设计及环境产品声明（EPD）编制。",
+          "en": "This dataset can be utilized for life cycle assessment research to quantify the environmental impact of heavy oil hydrocracking processes and support comparative carbon footprint analysis with traditional heavy naphtha production processes. In engineering applications, it provides data support for process optimization, equipment selection, energy configuration, and comprehensive resource utilization. At the policy and planning level, it can be applied to clean production audits, green factory certification, circular economy park evaluations, and carbon trading mechanism design. Additionally, it serves corporate green supply chain management, sustainable product design, and the preparation of Environmental Product Declarations (EPDs)."
+        },
+        "版权": "false",
+        "许可类型": "Free of charge for all users and uses",
+        "数据集版本": "01.01.000",
+        "永久数据集统一资源标识符": "https://example.invalid/dataset/3",
+        "数据集拥有者": {
+          "status": "已填写",
+          "type": "contact data set",
+          "version": "01.00.000"
+        }
+      },
+      "missingFields": [
+        "转换前原始数据集来源",
+        "数据集生成者/建模者"
+      ],
+      "tables": [],
+      "pageStatus": "api_projected",
+      "extractedAt": "2026-05-20T09:22:22.199Z"
+    },
+    {
+      "name": "输入/输出",
+      "fields": {
+        "输入数量": 27,
+        "输出数量": 26
+      },
+      "tables": [
+        {
+          "caption": "输入",
+          "rows": [
+            {
+              "序号": 1,
+              "内部ID": "0",
+              "方向": "Input",
+              "流": "en: Vacuum Residuum; vacuum distillation, heavy oil distillates, coking, fluid catalytic cracking, deasphalting processes; primary material, production mix, at refinery\nzh: 减压渣油; 真空蒸馏，重质石油馏分，焦化、流体催化裂化、脱沥青油处理; 原生材料，生产混合，在炼油厂",
+              "平均量": "862.212887",
+              "结果量": "862.212887",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "1",
+                  "name": "Ores and minerals; electricity, gas and water"
+                },
+                {
+                  "level": "1",
+                  "classId": "12",
+                  "name": "Crude petroleum and natural gas"
+                },
+                {
+                  "level": "2",
+                  "classId": "120",
+                  "name": "Crude petroleum and natural gas"
+                },
+                {
+                  "level": "3",
+                  "classId": "1201",
+                  "name": "Petroleum oils and oils obtained from bituminous minerals, crude"
+                },
+                {
+                  "level": "4",
+                  "classId": "12012",
+                  "name": "Petroleum oils and oils obtained from bituminous minerals"
+                }
+              ]
+            },
+            {
+              "序号": 2,
+              "内部ID": "1",
+              "方向": "Input",
+              "流": "en: Hydrogen\nzh: 氢气",
+              "平均量": "105.797453",
+              "结果量": "105.797453",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "34",
+                  "name": "Basic chemicals"
+                },
+                {
+                  "level": "2",
+                  "classId": "342",
+                  "name": "Basic inorganic chemicals n.e.c."
+                },
+                {
+                  "level": "3",
+                  "classId": "3421",
+                  "name": "Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+                },
+                {
+                  "level": "4",
+                  "classId": "34210",
+                  "name": "Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 3,
+              "内部ID": "2",
+              "方向": "Input",
+              "流": "zh: 交流电;  电力混合; 消费组合, 到用户; 1-35kV\nen: alternating current; electricity mix; consumption mix; 1-35kV",
+              "平均量": "513.81210096",
+              "结果量": "513.81210096",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "1",
+                  "name": "Ores and minerals; electricity, gas and water"
+                },
+                {
+                  "level": "1",
+                  "classId": "17",
+                  "name": "Electricity, town gas, steam and hot water"
+                },
+                {
+                  "level": "2",
+                  "classId": "171",
+                  "name": "Electrical energy"
+                },
+                {
+                  "level": "3",
+                  "classId": "1710",
+                  "name": "Electrical energy"
+                },
+                {
+                  "level": "4",
+                  "classId": "17100",
+                  "name": "Electrical energy"
+                }
+              ]
+            },
+            {
+              "序号": 4,
+              "内部ID": "3",
+              "方向": "Input",
+              "流": "en: direct current electricity; electricity mix; consumption mix, to consumers; <1kv\nzh: 直流电; 电力混合; 消费组合，到用户; <1kv",
+              "平均量": "59.442604416",
+              "结果量": "59.442604416",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "1",
+                  "name": "Ores and minerals; electricity, gas and water"
+                },
+                {
+                  "level": "1",
+                  "classId": "17",
+                  "name": "Electricity, town gas, steam and hot water"
+                },
+                {
+                  "level": "2",
+                  "classId": "171",
+                  "name": "Electrical energy"
+                },
+                {
+                  "level": "3",
+                  "classId": "1710",
+                  "name": "Electrical energy"
+                },
+                {
+                  "level": "4",
+                  "classId": "17100",
+                  "name": "Electrical energy"
+                }
+              ]
+            },
+            {
+              "序号": 5,
+              "内部ID": "4",
+              "方向": "Input",
+              "流": "en: Circulating water\nzh: 循环水",
+              "平均量": "15539.21965",
+              "结果量": "15539.21965",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "1",
+                  "name": "Ores and minerals; electricity, gas and water"
+                },
+                {
+                  "level": "1",
+                  "classId": "18",
+                  "name": "Natural water"
+                },
+                {
+                  "level": "2",
+                  "classId": "180",
+                  "name": "Natural water"
+                },
+                {
+                  "level": "3",
+                  "classId": "1800",
+                  "name": "Natural water"
+                },
+                {
+                  "level": "4",
+                  "classId": "18000",
+                  "name": "Natural water"
+                }
+              ]
+            },
+            {
+              "序号": 6,
+              "内部ID": "5",
+              "方向": "Input",
+              "流": "en: Compressed air\nzh: 压缩的空气",
+              "平均量": "7.690443493",
+              "结果量": "7.690443493",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "34",
+                  "name": "Basic chemicals"
+                },
+                {
+                  "level": "2",
+                  "classId": "342",
+                  "name": "Basic inorganic chemicals n.e.c."
+                },
+                {
+                  "level": "3",
+                  "classId": "3425",
+                  "name": "Salts of oxometallic or peroxometallic acids; colloidal precious metals and compounds thereof; inorganic and organic compounds of mercury; other inorganic chemicals n.e.c.; compressed air; amalgams"
+                },
+                {
+                  "level": "4",
+                  "classId": "34250",
+                  "name": "Salts of oxometallic or peroxometallic acids; colloidal precious metals and compounds thereof; inorganic and organic compounds of mercury; other inorganic chemicals n.e.c.; compressed air; amalgams"
+                }
+              ]
+            },
+            {
+              "序号": 7,
+              "内部ID": "6",
+              "方向": "Input",
+              "流": "en: Nitrogen\nzh: 氮气",
+              "平均量": "0.972614912",
+              "结果量": "0.972614912",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "34",
+                  "name": "Basic chemicals"
+                },
+                {
+                  "level": "2",
+                  "classId": "342",
+                  "name": "Basic inorganic chemicals n.e.c."
+                },
+                {
+                  "level": "3",
+                  "classId": "3421",
+                  "name": "Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+                },
+                {
+                  "level": "4",
+                  "classId": "34210",
+                  "name": "Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 8,
+              "内部ID": "7",
+              "方向": "Input",
+              "流": "en: Catalyst; Catalytic treatment; In the reactants\nzh: 催化剂; 催化处理; 在反应物",
+              "平均量": "0.9761833",
+              "结果量": "0.9761833",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "34",
+                  "name": "Basic chemicals"
+                },
+                {
+                  "level": "2",
+                  "classId": "341",
+                  "name": "Basic organic chemicals"
+                },
+                {
+                  "level": "3",
+                  "classId": "3418",
+                  "name": "Phosphoric esters and their salts or esters of other inorganic acids (excluding esters of hydrogen halides) and their salts; and their halogenated, sulphonated, nitrated or nitrosated derivatives"
+                },
+                {
+                  "level": "4",
+                  "classId": "34180",
+                  "name": "Phosphoric esters and their salts or esters of other inorganic acids (excluding esters of hydrogen halides) and their salts; and their halogenated, sulphonated, nitrated or nitrosated derivatives"
+                }
+              ]
+            },
+            {
+              "序号": 9,
+              "内部ID": "8",
+              "方向": "Input",
+              "流": "en: Corrosion inhibitor; low molecular weight polyquaternary ammonium salt, industrial grade, eco-friendly; production mix, at plant\nzh: 缓蚀剂; 低分子量聚季铵盐，工业级，环保型; 生产混合，在工厂",
+              "平均量": "0.0813205",
+              "结果量": "0.0813205",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "35",
+                  "name": "Other chemical products; man-made fibres"
+                },
+                {
+                  "level": "2",
+                  "classId": "354",
+                  "name": "Chemical products n.e.c."
+                },
+                {
+                  "level": "3",
+                  "classId": "3549",
+                  "name": "Other chemical products"
+                },
+                {
+                  "level": "4",
+                  "classId": "35499",
+                  "name": "Other chemical products n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 10,
+              "内部ID": "9",
+              "方向": "Input",
+              "流": "en: Trisodium Phosphate; production mix，at plant\nzh: 磷酸三钠; 生产混合，在工厂",
+              "平均量": "0.003096646",
+              "结果量": "0.003096646",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "34",
+                  "name": "Basic chemicals"
+                },
+                {
+                  "level": "2",
+                  "classId": "341",
+                  "name": "Basic organic chemicals"
+                },
+                {
+                  "level": "3",
+                  "classId": "3416",
+                  "name": "Organo-sulphur compounds and other organo-inorganic compounds; heterocyclic compounds n.e.c.; nucleic acids and their salts"
+                },
+                {
+                  "level": "4",
+                  "classId": "34160",
+                  "name": "Organo-sulphur compounds and other organo-inorganic compounds; heterocyclic compounds n.e.c.; nucleic acids and their salts"
+                }
+              ]
+            },
+            {
+              "序号": 26,
+              "内部ID": "25",
+              "方向": "Input",
+              "流": "zh: 焦化重蜡油; 重质原料（如减压渣油、常压渣油等），高温裂化与分馏，焦化装置; 焦化装置，生产混合，在炼油厂\nen: Direct coking heavy wax oil; Heavy raw materials (such as vacuum residue, atmospheric residue, etc.), high-temperature cracking and distillation, coking unit; Coking unit, production mixing, in refinery",
+              "平均量": "26.388777",
+              "结果量": "26.388777",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "数据来源": [
+                {
+                  "type": "source data set",
+                  "version": "01.01.000",
+                  "description": {
+                    "zh": "盛虹环评报告",
+                    "en": "ShengHongEnvironmental Impact Assessment Report"
+                  }
+                }
+              ],
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "33",
+                  "name": "Coke oven products; refined petroleum products; nuclear fuel"
+                },
+                {
+                  "level": "2",
+                  "classId": "333",
+                  "name": "Petroleum oils and oils obtained from bituminous materials, other than crude; preparations n.e.c. containing by weight 70% or more of these oils, such oils being the basic constituents of the preparations"
+                },
+                {
+                  "level": "3",
+                  "classId": "3339",
+                  "name": "Other petroleum oils n.e.c."
+                },
+                {
+                  "level": "4",
+                  "classId": "33390",
+                  "name": "Other petroleum oils n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 27,
+              "内部ID": "26",
+              "方向": "Input",
+              "流": "zh: 直馏蜡油; 原油常压蒸馏 350-500℃馏分切割，炼厂催化裂化原料标准; 生产混合，在工厂\nen: Straight-run wax oil; Crude oil distillate cutting at 350-500℃ under normal pressure, raw material standard for catalytic cracking in refineries; Production mixing takes place in the factory",
+              "平均量": "1220.023157",
+              "结果量": "1220.023157",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "数据来源": [
+                {
+                  "type": "source data set",
+                  "version": "01.01.000",
+                  "description": {
+                    "zh": "盛虹环评报告",
+                    "en": "ShengHongEnvironmental Impact Assessment Report"
+                  }
+                }
+              ],
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "1",
+                  "name": "Ores and minerals; electricity, gas and water"
+                },
+                {
+                  "level": "1",
+                  "classId": "12",
+                  "name": "Crude petroleum and natural gas"
+                },
+                {
+                  "level": "2",
+                  "classId": "120",
+                  "name": "Crude petroleum and natural gas"
+                },
+                {
+                  "level": "3",
+                  "classId": "1201",
+                  "name": "Petroleum oils and oils obtained from bituminous minerals, crude"
+                },
+                {
+                  "level": "4",
+                  "classId": "12012",
+                  "name": "Petroleum oils and oils obtained from bituminous minerals"
+                }
+              ]
+            },
+            {
+              "序号": 28,
+              "内部ID": "27",
+              "方向": "Input",
+              "流": "zh: 焦化轻蜡油; 重质渣油（如减压渣油、常压渣油），高温裂化与分馏工艺，焦化装置; 焦化装置，混合生产，在炼油厂\nen: Coking light wax oil; Heavy residue oil (such as vacuum residue oil and atmospheric residue oil), high-temperature cracking and fractionation process, coking unit; Coking unit, mixed production, in refinery",
+              "平均量": "59.45553",
+              "结果量": "59.45553",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "数据来源": [
+                {
+                  "type": "source data set",
+                  "version": "01.01.000",
+                  "description": {
+                    "zh": "盛虹环评报告",
+                    "en": "ShengHongEnvironmental Impact Assessment Report"
+                  }
+                }
+              ],
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "33",
+                  "name": "Coke oven products; refined petroleum products; nuclear fuel"
+                },
+                {
+                  "level": "2",
+                  "classId": "333",
+                  "name": "Petroleum oils and oils obtained from bituminous materials, other than crude; preparations n.e.c. containing by weight 70% or more of these oils, such oils being the basic constituents of the preparations"
+                },
+                {
+                  "level": "3",
+                  "classId": "3339",
+                  "name": "Other petroleum oils n.e.c."
+                },
+                {
+                  "level": "4",
+                  "classId": "33390",
+                  "name": "Other petroleum oils n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 29,
+              "内部ID": "28",
+              "方向": "Input",
+              "流": "zh: 焦化柴油; 延迟焦化装置分馏产物，加氢精制处理; 处理混合，在工厂\nen: Coking diesel; The fractionated products of the delayed coking unit are treated with hydrofining; Handle the mixture in the factory",
+              "平均量": "89.937259",
+              "结果量": "89.937259",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "33",
+                  "name": "Coke oven products; refined petroleum products; nuclear fuel"
+                },
+                {
+                  "level": "2",
+                  "classId": "333",
+                  "name": "Petroleum oils and oils obtained from bituminous materials, other than crude; preparations n.e.c. containing by weight 70% or more of these oils, such oils being the basic constituents of the preparations"
+                },
+                {
+                  "level": "3",
+                  "classId": "3336",
+                  "name": "Gas oil"
+                },
+                {
+                  "level": "4",
+                  "classId": "33360",
+                  "name": "Gas oil"
+                }
+              ]
+            },
+            {
+              "序号": 30,
+              "内部ID": "29",
+              "方向": "Input",
+              "流": "en: Lean amine solution; Generated in the rich amine solution regeneration process; Production mix, in the factory\nzh: 贫胺液; 在富胺液再生环节产生; 生产混合，在工厂",
+              "平均量": "2395.346959",
+              "结果量": "2395.346959",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "数据来源": [
+                {
+                  "type": "source data set",
+                  "version": "01.01.000",
+                  "description": {
+                    "zh": "盛虹环评报告",
+                    "en": "ShengHongEnvironmental Impact Assessment Report"
+                  }
+                }
+              ],
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "34",
+                  "name": "Basic chemicals"
+                },
+                {
+                  "level": "2",
+                  "classId": "341",
+                  "name": "Basic organic chemicals"
+                },
+                {
+                  "level": "3",
+                  "classId": "3416",
+                  "name": "Organo-sulphur compounds and other organo-inorganic compounds; heterocyclic compounds n.e.c.; nucleic acids and their salts"
+                },
+                {
+                  "level": "4",
+                  "classId": "34160",
+                  "name": "Organo-sulphur compounds and other organo-inorganic compounds; heterocyclic compounds n.e.c.; nucleic acids and their salts"
+                }
+              ]
+            },
+            {
+              "序号": 31,
+              "内部ID": "30",
+              "方向": "Input",
+              "流": "zh: 炼油干气; 原油及重质馏分，催化裂化、加氢裂化、渣油加氢、延迟焦化、重整、常减压蒸馏等; 生产混合，在炼油厂\nen: refinery dry gas; Crude oil and heavy fractions, catalytic cracking, hydrocracking, residue hydrogenation, delayed coking, reforming, atmospheric and vacuum distillation, etc; Production mix, at the refinery",
+              "平均量": "38.3983844",
+              "结果量": "38.3983844",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "数据来源": [
+                {
+                  "type": "source data set",
+                  "version": "01.01.000",
+                  "description": {
+                    "zh": "盛虹环评报告",
+                    "en": "ShengHongEnvironmental Impact Assessment Report"
+                  }
+                }
+              ],
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "33",
+                  "name": "Coke oven products; refined petroleum products; nuclear fuel"
+                },
+                {
+                  "level": "2",
+                  "classId": "334",
+                  "name": "Petroleum gases and other gaseous hydrocarbons, except natural gas"
+                },
+                {
+                  "level": "3",
+                  "classId": "3342",
+                  "name": "Ethylene, propylene, butylene, butadiene and other petroleum gases or gaseous hydrocarbons, except natural gas"
+                },
+                {
+                  "level": "4",
+                  "classId": "33429",
+                  "name": "Other petroleum gases or gaseous hydrocarbons, except natural gas"
+                }
+              ]
+            },
+            {
+              "序号": 32,
+              "内部ID": "31",
+              "方向": "Input",
+              "流": "zh: 煤油加氢干气; 煤油加氢精制装置副产，脱硫脱烃预处理; 生产混合，在工厂\nen: Kerosene hydrogenated dry gas; By-product of kerosene hydrofining unit, pretreatment for desulfurization and dehydrocarbon; Production mixing takes place in the factory",
+              "平均量": "2.8812236",
+              "结果量": "2.8812236",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "数据来源": [
+                {
+                  "type": "source data set",
+                  "version": "01.01.000",
+                  "description": {
+                    "zh": "盛虹环评报告",
+                    "en": "ShengHongEnvironmental Impact Assessment Report"
+                  }
+                }
+              ],
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "1",
+                  "name": "Ores and minerals; electricity, gas and water"
+                },
+                {
+                  "level": "1",
+                  "classId": "12",
+                  "name": "Crude petroleum and natural gas"
+                },
+                {
+                  "level": "2",
+                  "classId": "120",
+                  "name": "Crude petroleum and natural gas"
+                },
+                {
+                  "level": "3",
+                  "classId": "1202",
+                  "name": "Natural gas, liquefied or in the gaseous state"
+                },
+                {
+                  "level": "4",
+                  "classId": "12020",
+                  "name": "Natural gas, liquefied or in the gaseous state"
+                }
+              ]
+            },
+            {
+              "序号": 33,
+              "内部ID": "32",
+              "方向": "Input",
+              "流": "zh: 润滑油异构气体; 加氢异构反应副产，炼厂燃料气通用标准; 生产混合，在工厂\nen: Lubricating oil heterogeneous gas; General standard for refinery fuel gas as a by-product of hydrogenation isomerization reaction; Production mixing takes place in the factory",
+              "平均量": "0.7270377",
+              "结果量": "0.7270377",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "数据来源": [
+                {
+                  "type": "source data set",
+                  "version": "01.01.000",
+                  "description": {
+                    "zh": "盛虹环评报告",
+                    "en": "ShengHongEnvironmental Impact Assessment Report"
+                  }
+                }
+              ],
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "33",
+                  "name": "Coke oven products; refined petroleum products; nuclear fuel"
+                },
+                {
+                  "level": "2",
+                  "classId": "334",
+                  "name": "Petroleum gases and other gaseous hydrocarbons, except natural gas"
+                },
+                {
+                  "level": "3",
+                  "classId": "3342",
+                  "name": "Ethylene, propylene, butylene, butadiene and other petroleum gases or gaseous hydrocarbons, except natural gas"
+                },
+                {
+                  "level": "4",
+                  "classId": "33429",
+                  "name": "Other petroleum gases or gaseous hydrocarbons, except natural gas"
+                }
+              ]
+            },
+            {
+              "序号": 34,
+              "内部ID": "33",
+              "方向": "Input",
+              "流": "zh: 除氧水; 热力除氧（104℃）+ 化学除氧（加联氨）; 生产混合，在工厂\nen: Deaerated water; Thermal deaeration (104℃) + chemical deaeration (with hydrazine); Production mixing takes place in the factory",
+              "平均量": "527.021569",
+              "结果量": "527.021569",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "数据来源": [
+                {
+                  "type": "source data set",
+                  "version": "01.01.000",
+                  "description": {
+                    "zh": "盛虹环评报告",
+                    "en": "ShengHongEnvironmental Impact Assessment Report"
+                  }
+                }
+              ],
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "1",
+                  "name": "Ores and minerals; electricity, gas and water"
+                },
+                {
+                  "level": "1",
+                  "classId": "18",
+                  "name": "Natural water"
+                },
+                {
+                  "level": "2",
+                  "classId": "180",
+                  "name": "Natural water"
+                },
+                {
+                  "level": "3",
+                  "classId": "1800",
+                  "name": "Natural water"
+                },
+                {
+                  "level": "4",
+                  "classId": "18000",
+                  "name": "Natural water"
+                }
+              ]
+            },
+            {
+              "序号": 35,
+              "内部ID": "34",
+              "方向": "Input",
+              "流": "zh: 净化水; 水，过滤，过滤材料; 生产混合，在工厂\nen: purified water; Water, filtration, filtration materials; Production mix, in the factory",
+              "平均量": "244.284676",
+              "结果量": "244.284676",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "1",
+                  "name": "Ores and minerals; electricity, gas and water"
+                },
+                {
+                  "level": "1",
+                  "classId": "18",
+                  "name": "Natural water"
+                },
+                {
+                  "level": "2",
+                  "classId": "180",
+                  "name": "Natural water"
+                },
+                {
+                  "level": "3",
+                  "classId": "1800",
+                  "name": "Natural water"
+                },
+                {
+                  "level": "4",
+                  "classId": "18000",
+                  "name": "Natural water"
+                }
+              ]
+            },
+            {
+              "序号": 36,
+              "内部ID": "35",
+              "方向": "Input",
+              "流": "en: Steam; Industrial boilers produce steam that meets industrial steam standards and is transported through pipelines; Production mix, at plant\nzh: 蒸汽(MPa); 工业锅炉产生，符合工业用蒸汽标准，通过管道输送; 生产混合，在工厂",
+              "平均量": "141.7723564",
+              "结果量": "141.7723564",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "1",
+                  "name": "Ores and minerals; electricity, gas and water"
+                },
+                {
+                  "level": "1",
+                  "classId": "17",
+                  "name": "Electricity, town gas, steam and hot water"
+                },
+                {
+                  "level": "2",
+                  "classId": "173",
+                  "name": "Steam and hot water"
+                },
+                {
+                  "level": "3",
+                  "classId": "1730",
+                  "name": "Steam and hot water"
+                },
+                {
+                  "level": "4",
+                  "classId": "17300",
+                  "name": "Steam and hot water"
+                }
+              ]
+            },
+            {
+              "序号": 37,
+              "内部ID": "36",
+              "方向": "Input",
+              "流": "zh: 蒸汽（4.0MPa）; 锅炉制取; 生产混和,在工厂\nen: steam (4.0 MPa)。;  produced by boiler; Mixing in production,In the factory",
+              "平均量": "554.1643105",
+              "结果量": "554.1643105",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "1",
+                  "name": "Ores and minerals; electricity, gas and water"
+                },
+                {
+                  "level": "1",
+                  "classId": "17",
+                  "name": "Electricity, town gas, steam and hot water"
+                },
+                {
+                  "level": "2",
+                  "classId": "173",
+                  "name": "Steam and hot water"
+                },
+                {
+                  "level": "3",
+                  "classId": "1730",
+                  "name": "Steam and hot water"
+                },
+                {
+                  "level": "4",
+                  "classId": "17300",
+                  "name": "Steam and hot water"
+                }
+              ]
+            },
+            {
+              "序号": 38,
+              "内部ID": "37",
+              "方向": "Input",
+              "流": "zh: 蒸汽\t（1.3MPa）; 锅炉制取; 生产混合，在工厂\nen: Steam (1.3MPa); Boiler production; Production mix, in the factory",
+              "平均量": "284.9987883",
+              "结果量": "284.9987883",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "1",
+                  "name": "Ores and minerals; electricity, gas and water"
+                },
+                {
+                  "level": "1",
+                  "classId": "17",
+                  "name": "Electricity, town gas, steam and hot water"
+                },
+                {
+                  "level": "2",
+                  "classId": "173",
+                  "name": "Steam and hot water"
+                },
+                {
+                  "level": "3",
+                  "classId": "1730",
+                  "name": "Steam and hot water"
+                },
+                {
+                  "level": "4",
+                  "classId": "17300",
+                  "name": "Steam and hot water"
+                }
+              ]
+            },
+            {
+              "序号": 39,
+              "内部ID": "38",
+              "方向": "Input",
+              "流": "zh: 瓷球; 陶瓷烧制工艺; 生产混和，在工厂\nen: ceramic ball; ceramic firing process; Mixing in production，In the factory",
+              "平均量": "0.0646256",
+              "结果量": "0.0646256",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "4",
+                  "name": "Metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "42",
+                  "name": "Fabricated metal products, except machinery and equipment"
+                },
+                {
+                  "level": "2",
+                  "classId": "429",
+                  "name": "Other fabricated metal products"
+                },
+                {
+                  "level": "3",
+                  "classId": "4299",
+                  "name": "Other metal goods"
+                },
+                {
+                  "level": "4",
+                  "classId": "42999",
+                  "name": "Metal goods n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 40,
+              "内部ID": "39",
+              "方向": "Input",
+              "流": "zh: 硫化剂; 以硫醇（碱性催化）或以烯烃和硫（催化）或以烯烃、卤化硫为原料（催化剂，脱卤素工艺）; 生产混合，在工厂\nen: vulcanizing agent; Using thiols (alkaline catalysis) or olefins and sulfur (catalysis) or olefins and sulfur halides as raw materials (catalyst, dehalogenation process); Production mix, in the factory",
+              "平均量": "0.0624714",
+              "结果量": "0.0624714",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "35",
+                  "name": "Other chemical products; man-made fibres"
+                },
+                {
+                  "level": "2",
+                  "classId": "354",
+                  "name": "Chemical products n.e.c."
+                },
+                {
+                  "level": "3",
+                  "classId": "3549",
+                  "name": "Other chemical products"
+                },
+                {
+                  "level": "4",
+                  "classId": "35499",
+                  "name": "Other chemical products n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 41,
+              "内部ID": "40",
+              "方向": "Input",
+              "流": "zh: 阻垢剂; 三氯化磷、冰醋酸、甲醛、氢氧化钠，酯化反应、水解缩合、中和提纯; 生产混合，在工厂\nen: scale inhibitor; Phosphorus trichloride, glacial acetic acid, formaldehyde, sodium hydroxide, esterification reaction, hydrolysis condensation, neutralization purification; Production mix, in the factory",
+              "平均量": "0.2221504",
+              "结果量": "0.2221504",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "35",
+                  "name": "Other chemical products; man-made fibres"
+                },
+                {
+                  "level": "2",
+                  "classId": "354",
+                  "name": "Chemical products n.e.c."
+                },
+                {
+                  "level": "3",
+                  "classId": "3549",
+                  "name": "Other chemical products"
+                },
+                {
+                  "level": "4",
+                  "classId": "35499",
+                  "name": "Other chemical products n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 42,
+              "内部ID": "41",
+              "方向": "Input",
+              "流": "zh: 阻垢缓蚀剂; 有机膦酸、聚羧酸类共聚物、去离子水，反应釜; 生产混合，在工厂\nen: Corrosion inhibitor; Organic phosphonic acid, polycarboxylate copolymer, deionized water, reaction vessel; Production mix, in the factory",
+              "平均量": "0.0166949",
+              "结果量": "0.0166949",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "35",
+                  "name": "Other chemical products; man-made fibres"
+                },
+                {
+                  "level": "2",
+                  "classId": "354",
+                  "name": "Chemical products n.e.c."
+                },
+                {
+                  "level": "3",
+                  "classId": "3549",
+                  "name": "Other chemical products"
+                },
+                {
+                  "level": "4",
+                  "classId": "35499",
+                  "name": "Other chemical products n.e.c."
+                }
+              ]
+            }
+          ],
+          "rowCount": 27
+        },
+        {
+          "caption": "输出",
+          "rows": [
+            {
+              "序号": 11,
+              "内部ID": "10",
+              "方向": "Output",
+              "流": "en: Hydrocracking Tail Oil\nzh: 加氢裂化尾油",
+              "平均量": "180.574629",
+              "结果量": "180.574629",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "33",
+                  "name": "Coke oven products; refined petroleum products; nuclear fuel"
+                },
+                {
+                  "level": "2",
+                  "classId": "333",
+                  "name": "Petroleum oils and oils obtained from bituminous materials, other than crude; preparations n.e.c. containing by weight 70% or more of these oils, such oils being the basic constituents of the preparations"
+                },
+                {
+                  "level": "3",
+                  "classId": "3339",
+                  "name": "Other petroleum oils n.e.c."
+                },
+                {
+                  "level": "4",
+                  "classId": "33390",
+                  "name": "Other petroleum oils n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 12,
+              "内部ID": "11",
+              "方向": "Output",
+              "流": "en: sulfur dioxide\nzh: 二氧化硫",
+              "平均量": "0.0068535",
+              "结果量": "0.0068535",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Elementary flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "name": "Emissions"
+                },
+                {
+                  "level": "1",
+                  "name": "Emissions to air"
+                },
+                {
+                  "level": "2",
+                  "name": "Emissions to air, indoor"
+                }
+              ]
+            },
+            {
+              "序号": 13,
+              "内部ID": "12",
+              "方向": "Output",
+              "流": "en: Nitrogen oxides\nzh: 氮氧化物",
+              "平均量": "0.0230487",
+              "结果量": "0.0230487",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Elementary flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "name": "Emissions"
+                },
+                {
+                  "level": "1",
+                  "name": "Emissions to air"
+                },
+                {
+                  "level": "2",
+                  "name": "Emissions to air, unspecified"
+                }
+              ]
+            },
+            {
+              "序号": 14,
+              "内部ID": "13",
+              "方向": "Output",
+              "流": "en: Particles (PM0.2)\nzh: 颗粒物 (> PM0.2)",
+              "平均量": "0.0046143",
+              "结果量": "0.0046143",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Elementary flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "name": "Emissions"
+                },
+                {
+                  "level": "1",
+                  "name": "Emissions to air"
+                },
+                {
+                  "level": "2",
+                  "name": "Emissions to urban air very high stack"
+                }
+              ]
+            },
+            {
+              "序号": 15,
+              "内部ID": "14",
+              "方向": "Output",
+              "流": "en: non-methane volatile organic compounds; composition of exhaust gas; consumption mix; waste gas disposal\nzh: 非甲烷挥发性有机化合物; 废气成分; 消费混合; 废气处置",
+              "平均量": "0.0069214",
+              "结果量": "0.0069214",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Waste flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "9",
+                  "name": "Community, social and personal services"
+                },
+                {
+                  "level": "1",
+                  "classId": "94",
+                  "name": "Sewage and waste collection, treatment and disposal and other environmental protection services"
+                },
+                {
+                  "level": "2",
+                  "classId": "949",
+                  "name": "Other environmental protection services n.e.c."
+                },
+                {
+                  "level": "3",
+                  "classId": "9490",
+                  "name": "Other environmental protection services n.e.c."
+                },
+                {
+                  "level": "4",
+                  "classId": "94900",
+                  "name": "Other environmental protection services n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 16,
+              "内部ID": "15",
+              "方向": "Output",
+              "流": "zh: 加氢裂化(HC)重石脑油; 直馏减压蜡油、沸腾床加氢蜡油、柴油和焦化轻蜡油、焦化柴油为原料; 生产混合，在工厂\nen: Naphtha, heavy desulfurization by hydrogenation; Straight run vacuum wax oil, fluidized bed hydrogenated wax oil, diesel and coking light wax oil, coking diesel as raw materials; Production mix, in the factory",
+              "平均量": "1000",
+              "结果量": "1000",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "是",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "33",
+                  "name": "Coke oven products; refined petroleum products; nuclear fuel"
+                },
+                {
+                  "level": "2",
+                  "classId": "333",
+                  "name": "Petroleum oils and oils obtained from bituminous materials, other than crude; preparations n.e.c. containing by weight 70% or more of these oils, such oils being the basic constituents of the preparations"
+                },
+                {
+                  "level": "3",
+                  "classId": "3333",
+                  "name": "Naphtha"
+                },
+                {
+                  "level": "4",
+                  "classId": "33330",
+                  "name": "Naphtha"
+                }
+              ]
+            },
+            {
+              "序号": 17,
+              "内部ID": "16",
+              "方向": "Output",
+              "流": "zh: 凝结水; 间接冷却冷凝或直接接触冷凝; 生产混和，在工厂\nen: condensed water;  indirect cooling condensation or direct contact condensation; Mixing in production，In the factory",
+              "平均量": "88.2139107",
+              "结果量": "88.2139107",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "1",
+                  "name": "Ores and minerals; electricity, gas and water"
+                },
+                {
+                  "level": "1",
+                  "classId": "16",
+                  "name": "Other minerals"
+                },
+                {
+                  "level": "2",
+                  "classId": "161",
+                  "name": "Chemical and fertilizer minerals"
+                },
+                {
+                  "level": "3",
+                  "classId": "1619",
+                  "name": "Other chemical minerals"
+                },
+                {
+                  "level": "4",
+                  "classId": "16190",
+                  "name": "Other chemical minerals"
+                }
+              ]
+            },
+            {
+              "序号": 18,
+              "内部ID": "17",
+              "方向": "Output",
+              "流": "zh: 蒸汽（4.0MPa）; 锅炉制取; 生产混和,在工厂\nen: steam (4.0 MPa)。;  produced by boiler; Mixing in production,In the factory",
+              "平均量": "22.6189515",
+              "结果量": "22.6189515",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "1",
+                  "name": "Ores and minerals; electricity, gas and water"
+                },
+                {
+                  "level": "1",
+                  "classId": "17",
+                  "name": "Electricity, town gas, steam and hot water"
+                },
+                {
+                  "level": "2",
+                  "classId": "173",
+                  "name": "Steam and hot water"
+                },
+                {
+                  "level": "3",
+                  "classId": "1730",
+                  "name": "Steam and hot water"
+                },
+                {
+                  "level": "4",
+                  "classId": "17300",
+                  "name": "Steam and hot water"
+                }
+              ]
+            },
+            {
+              "序号": 19,
+              "内部ID": "18",
+              "方向": "Output",
+              "流": "en: Catalyst waste; Waste disposal; Production mix, in the factory\nzh: 催化剂废物; 废物处理; 生产混合，在工厂",
+              "平均量": "0.663355",
+              "结果量": "0.663355",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Waste flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "39",
+                  "name": "Wastes or scraps"
+                },
+                {
+                  "level": "2",
+                  "classId": "399",
+                  "name": "Other wastes and scraps"
+                },
+                {
+                  "level": "3",
+                  "classId": "3994",
+                  "name": "Waste organic solvents"
+                },
+                {
+                  "level": "4",
+                  "classId": "39940",
+                  "name": "Waste organic solvents"
+                }
+              ]
+            },
+            {
+              "序号": 20,
+              "内部ID": "19",
+              "方向": "Output",
+              "流": "zh: 含油污水; 生产废水; 生产混合，在工厂\nen: oil-polluted water; production wastewater; Production mix, in the factory",
+              "平均量": "52.023588",
+              "结果量": "52.023588",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Waste flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "39",
+                  "name": "Wastes or scraps"
+                },
+                {
+                  "level": "2",
+                  "classId": "399",
+                  "name": "Other wastes and scraps"
+                },
+                {
+                  "level": "3",
+                  "classId": "3992",
+                  "name": "Sewage sludge"
+                },
+                {
+                  "level": "4",
+                  "classId": "39920",
+                  "name": "Sewage sludge"
+                }
+              ]
+            },
+            {
+              "序号": 21,
+              "内部ID": "20",
+              "方向": "Output",
+              "流": "en: Sulfur - containing sewage from heavy oil hydrogenation; Reaction system and separation unit of the hydrogenation unit; Production mixing, in the factory\nzh: 重油加氢含硫污水; 加氢装置的反应系统与分离单元; 生产混合，在工厂",
+              "平均量": "441.069553",
+              "结果量": "441.069553",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "39",
+                  "name": "Wastes or scraps"
+                },
+                {
+                  "level": "2",
+                  "classId": "399",
+                  "name": "Other wastes and scraps"
+                },
+                {
+                  "level": "3",
+                  "classId": "3992",
+                  "name": "Sewage sludge"
+                },
+                {
+                  "level": "4",
+                  "classId": "39920",
+                  "name": "Sewage sludge"
+                }
+              ]
+            },
+            {
+              "序号": 22,
+              "内部ID": "21",
+              "方向": "Output",
+              "流": "en: Boiling bed heavy oil; Crude oil is processed through fractional distillation and cracking; In the oil refinery; 39.36-41.03MJ/kg\nzh: 沸腾床重油; 原油经过分馏和裂解加工; 在炼油厂; 39.36-41.03MJ/kg",
+              "平均量": "177.989606",
+              "结果量": "177.989606",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "1",
+                  "name": "Ores and minerals; electricity, gas and water"
+                },
+                {
+                  "level": "1",
+                  "classId": "12",
+                  "name": "Crude petroleum and natural gas"
+                },
+                {
+                  "level": "2",
+                  "classId": "120",
+                  "name": "Crude petroleum and natural gas"
+                },
+                {
+                  "level": "3",
+                  "classId": "1201",
+                  "name": "Petroleum oils and oils obtained from bituminous minerals, crude"
+                },
+                {
+                  "level": "4",
+                  "classId": "12011",
+                  "name": "Crude petroleum"
+                }
+              ]
+            },
+            {
+              "序号": 23,
+              "内部ID": "22",
+              "方向": "Output",
+              "流": "en: HC Naphtha; Byproducts of heavy oil hydrotreating unit; Production mixing, in the factory\nzh: HC 轻石脑油; 重油加氢联合装置副产; 生产混合，在工厂",
+              "平均量": "304.8711528",
+              "结果量": "304.8711528",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "33",
+                  "name": "Coke oven products; refined petroleum products; nuclear fuel"
+                },
+                {
+                  "level": "2",
+                  "classId": "333",
+                  "name": "Petroleum oils and oils obtained from bituminous materials, other than crude; preparations n.e.c. containing by weight 70% or more of these oils, such oils being the basic constituents of the preparations"
+                },
+                {
+                  "level": "3",
+                  "classId": "3333",
+                  "name": "Naphtha"
+                },
+                {
+                  "level": "4",
+                  "classId": "33330",
+                  "name": "Naphtha"
+                }
+              ]
+            },
+            {
+              "序号": 24,
+              "内部ID": "23",
+              "方向": "Output",
+              "流": "zh: 沸腾床膜分离尾气; 炼油工艺气体，膜分离技术，选择性分离提纯; 生产混合，在工厂\nen: Fluidized bed membrane separation of tail gas; Refining process gases, membrane separation technology, selective separation and purification; Production mix, in the factory",
+              "平均量": "0.039286964",
+              "结果量": "0.039286964",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "33",
+                  "name": "Coke oven products; refined petroleum products; nuclear fuel"
+                },
+                {
+                  "level": "2",
+                  "classId": "334",
+                  "name": "Petroleum gases and other gaseous hydrocarbons, except natural gas"
+                },
+                {
+                  "level": "3",
+                  "classId": "3342",
+                  "name": "Ethylene, propylene, butylene, butadiene and other petroleum gases or gaseous hydrocarbons, except natural gas"
+                },
+                {
+                  "level": "4",
+                  "classId": "33429",
+                  "name": "Other petroleum gases or gaseous hydrocarbons, except natural gas"
+                }
+              ]
+            },
+            {
+              "序号": 25,
+              "内部ID": "24",
+              "方向": "Output",
+              "流": "zh: HC 粗液化气; 原油常压蒸馏 30-180℃轻烃馏分→冷凝液化; 生产混合，在工厂\nen: HC crude liquefied gas; Crude oil undergoes atmospheric distillation at 30-180℃ for light hydrocarbon fractions → condensation and liquefaction; Production mixing takes place in the factory",
+              "平均量": "126.693055",
+              "结果量": "126.693055",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "33",
+                  "name": "Coke oven products; refined petroleum products; nuclear fuel"
+                },
+                {
+                  "level": "2",
+                  "classId": "334",
+                  "name": "Petroleum gases and other gaseous hydrocarbons, except natural gas"
+                },
+                {
+                  "level": "3",
+                  "classId": "3342",
+                  "name": "Ethylene, propylene, butylene, butadiene and other petroleum gases or gaseous hydrocarbons, except natural gas"
+                },
+                {
+                  "level": "4",
+                  "classId": "33429",
+                  "name": "Other petroleum gases or gaseous hydrocarbons, except natural gas"
+                }
+              ]
+            },
+            {
+              "序号": 43,
+              "内部ID": "42",
+              "方向": "Output",
+              "流": "zh: 蒸汽\t（1.3MPa）; 锅炉制取; 生产混合，在工厂\nen: Steam (1.3MPa); Boiler production; Production mix, in the factory",
+              "平均量": "669.5209629",
+              "结果量": "669.5209629",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "1",
+                  "name": "Ores and minerals; electricity, gas and water"
+                },
+                {
+                  "level": "1",
+                  "classId": "17",
+                  "name": "Electricity, town gas, steam and hot water"
+                },
+                {
+                  "level": "2",
+                  "classId": "173",
+                  "name": "Steam and hot water"
+                },
+                {
+                  "level": "3",
+                  "classId": "1730",
+                  "name": "Steam and hot water"
+                },
+                {
+                  "level": "4",
+                  "classId": "17300",
+                  "name": "Steam and hot water"
+                }
+              ]
+            },
+            {
+              "序号": 44,
+              "内部ID": "43",
+              "方向": "Output",
+              "流": "en: Low-pressure steam; Industrial boilers are generated; Production mixing, in the factory\nzh: 低压蒸汽; 工业锅炉产生; 生产混合，在工厂",
+              "平均量": "45.2379029",
+              "结果量": "45.2379029",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "1",
+                  "name": "Ores and minerals; electricity, gas and water"
+                },
+                {
+                  "level": "1",
+                  "classId": "17",
+                  "name": "Electricity, town gas, steam and hot water"
+                },
+                {
+                  "level": "2",
+                  "classId": "173",
+                  "name": "Steam and hot water"
+                },
+                {
+                  "level": "3",
+                  "classId": "1730",
+                  "name": "Steam and hot water"
+                },
+                {
+                  "level": "4",
+                  "classId": "17300",
+                  "name": "Steam and hot water"
+                }
+              ]
+            },
+            {
+              "序号": 45,
+              "内部ID": "44",
+              "方向": "Output",
+              "流": "en: Heavy oil hydrotreating rich amine liquid; Generated in the desulfurization and decarbonization section of the heavy oil hydrotreating unit, petroleum refining - heavy oil hydrotreating process; Production mix, in the factory\nzh: 重油加氢富胺液; 在重油加氢装置的脱硫脱碳环节产生，石油炼制 - 重油加氢流程; 生产混合，在工厂",
+              "平均量": "2478.3638958",
+              "结果量": "2478.3638958",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "34",
+                  "name": "Basic chemicals"
+                },
+                {
+                  "level": "2",
+                  "classId": "341",
+                  "name": "Basic organic chemicals"
+                },
+                {
+                  "level": "3",
+                  "classId": "3415",
+                  "name": "Amine-function compounds; oxygen-function amino-compounds, except lysine and its esters and salts thereof and glutamic acid and its salts; ureines and their derivatives and salts thereof; carboxyimide-function compounds and imine-compounds; nitrile-function compounds; diazo-, azo- or azoxy-compounds; organic derivatives of hydrazine or of hydroxylamine; compounds with other nitrogen function"
+                },
+                {
+                  "level": "4",
+                  "classId": "34150",
+                  "name": "Amine-function compounds; oxygen-function amino-compounds, except lysine and its esters and salts thereof and glutamic acid and its salts; ureines and their derivatives and salts thereof; carboxyimide-function compounds and imine-compounds; nitrile-function compounds; diazo-, azo- or azoxy-compounds; organic derivatives of hydrazine or of hydroxylamine; compounds with other nitrogen function"
+                }
+              ]
+            },
+            {
+              "序号": 46,
+              "内部ID": "45",
+              "方向": "Output",
+              "流": "zh: HC干气; 干气预处理除杂→变压吸附分离提氢→氢气提纯，工业氢气标准（GB/T 3634.1-2006）; 生产混合，在工厂\nen: HC dry gas; Dry gas pretreatment for impurity removal → pressure swing adsorption separation for hydrogen extraction → Hydrogen purification, industrial hydrogen standard (GB/T 3634.1-2006); Production mixing takes place in the factory",
+              "平均量": "9.7746183",
+              "结果量": "9.7746183",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "33",
+                  "name": "Coke oven products; refined petroleum products; nuclear fuel"
+                },
+                {
+                  "level": "2",
+                  "classId": "334",
+                  "name": "Petroleum gases and other gaseous hydrocarbons, except natural gas"
+                },
+                {
+                  "level": "3",
+                  "classId": "3342",
+                  "name": "Ethylene, propylene, butylene, butadiene and other petroleum gases or gaseous hydrocarbons, except natural gas"
+                },
+                {
+                  "level": "4",
+                  "classId": "33429",
+                  "name": "Other petroleum gases or gaseous hydrocarbons, except natural gas"
+                }
+              ]
+            },
+            {
+              "序号": 47,
+              "内部ID": "46",
+              "方向": "Output",
+              "流": "zh: 沸腾床石脑油; 沸腾床加氢系统产出的石脑油馏分，含较多环烷烃及芳烃组分; 生产混和，在工厂\nen: Fluidized bed naphtha; The naphtha fraction produced by the ebullated bed hydrogenation system contains a relatively large amount of naphthenes and aromatic components.; Mixing in production，In the factory",
+              "平均量": "116.5145273",
+              "结果量": "116.5145273",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "34",
+                  "name": "Basic chemicals"
+                },
+                {
+                  "level": "2",
+                  "classId": "341",
+                  "name": "Basic organic chemicals"
+                },
+                {
+                  "level": "3",
+                  "classId": "3411",
+                  "name": "Hydrocarbons and their halogenated, sulphonated, nitrated or nitrosated derivatives"
+                },
+                {
+                  "level": "4",
+                  "classId": "34110",
+                  "name": "Hydrocarbons and their halogenated, sulphonated, nitrated or nitrosated derivatives"
+                }
+              ]
+            },
+            {
+              "序号": 48,
+              "内部ID": "47",
+              "方向": "Output",
+              "流": "zh: 加氢裂化航煤; 原油，加氢裂化工艺、脱除硫、氮、金属等杂质、调整烃类结构，重油加氢联合装置; 生产混合，在工厂\nen: Hydrocracking aviation kerosene; Crude oil, hydrocracking process, removal of impurities such as sulfur, nitrogen, and metals, adjustment of hydrocarbon structure, heavy oil hydrogenation combined unit; Production mix, in the factory",
+              "平均量": "191.6956135",
+              "结果量": "191.6956135",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "33",
+                  "name": "Coke oven products; refined petroleum products; nuclear fuel"
+                },
+                {
+                  "level": "2",
+                  "classId": "333",
+                  "name": "Petroleum oils and oils obtained from bituminous materials, other than crude; preparations n.e.c. containing by weight 70% or more of these oils, such oils being the basic constituents of the preparations"
+                },
+                {
+                  "level": "3",
+                  "classId": "3334",
+                  "name": "Kerosenes"
+                },
+                {
+                  "level": "4",
+                  "classId": "33349",
+                  "name": "Other kerosene"
+                }
+              ]
+            },
+            {
+              "序号": 49,
+              "内部ID": "48",
+              "方向": "Output",
+              "流": "zh: C5 馏分; 低沸点石脑油切割馏分，主要含戊烷及其异构体，用于异构化或溶剂生产; 生产混和，在工厂\nen: C5 fraction; Low boiling point naphtha cutting fraction, mainly containing pentane and its isomers, used for isomerization or solvent production.; Production mixing, in the factory",
+              "平均量": "86.9483265",
+              "结果量": "86.9483265",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "34",
+                  "name": "Basic chemicals"
+                },
+                {
+                  "level": "2",
+                  "classId": "341",
+                  "name": "Basic organic chemicals"
+                },
+                {
+                  "level": "3",
+                  "classId": "3411",
+                  "name": "Hydrocarbons and their halogenated, sulphonated, nitrated or nitrosated derivatives"
+                },
+                {
+                  "level": "4",
+                  "classId": "34110",
+                  "name": "Hydrocarbons and their halogenated, sulphonated, nitrated or nitrosated derivatives"
+                }
+              ]
+            },
+            {
+              "序号": 50,
+              "内部ID": "49",
+              "方向": "Output",
+              "流": "zh: 渣油加氢干气; 干气缓冲稳压→甲基二乙醇胺脱硫→变压吸附提氢，工业氢气标准; 生产混合，在工厂\nen: Dry gas from residue oil hydrogenation; Dry gas buffer pressure stabilization → methyl diethanolamine desulfurization → pressure swing adsorption hydrogen extraction, industrial hydrogen standard; Production mixing takes place in the factory",
+              "平均量": "8.4282521",
+              "结果量": "8.4282521",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "33",
+                  "name": "Coke oven products; refined petroleum products; nuclear fuel"
+                },
+                {
+                  "level": "2",
+                  "classId": "334",
+                  "name": "Petroleum gases and other gaseous hydrocarbons, except natural gas"
+                },
+                {
+                  "level": "3",
+                  "classId": "3342",
+                  "name": "Ethylene, propylene, butylene, butadiene and other petroleum gases or gaseous hydrocarbons, except natural gas"
+                },
+                {
+                  "level": "4",
+                  "classId": "33429",
+                  "name": "Other petroleum gases or gaseous hydrocarbons, except natural gas"
+                }
+              ]
+            },
+            {
+              "序号": 51,
+              "内部ID": "50",
+              "方向": "Output",
+              "流": "zh: 加氢裂化低分气; 加氢裂化 - 高低分工艺; 生产混合，在工厂\nen: low-pressure gas; Hydrocracking - High - Low Pressure Separation Process; Production blending, at the factory",
+              "平均量": "22.4843148",
+              "结果量": "22.4843148",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "34",
+                  "name": "Basic chemicals"
+                },
+                {
+                  "level": "2",
+                  "classId": "342",
+                  "name": "Basic inorganic chemicals n.e.c."
+                },
+                {
+                  "level": "3",
+                  "classId": "3421",
+                  "name": "Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+                },
+                {
+                  "level": "4",
+                  "classId": "34210",
+                  "name": "Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 52,
+              "内部ID": "51",
+              "方向": "Output",
+              "流": "zh: 沸腾床低分气; 沸腾床加氢 - 高低分工艺; 生产混合，在工厂\nen: Low-pressure gas from fluidized bed; Fluidized Bed Hydrotreating - High-Low Separation Process; Production blending, at the factory",
+              "平均量": "11.6326036",
+              "结果量": "11.6326036",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "34",
+                  "name": "Basic chemicals"
+                },
+                {
+                  "level": "2",
+                  "classId": "342",
+                  "name": "Basic inorganic chemicals n.e.c."
+                },
+                {
+                  "level": "3",
+                  "classId": "3421",
+                  "name": "Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+                },
+                {
+                  "level": "4",
+                  "classId": "34210",
+                  "name": "Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 53,
+              "内部ID": "52",
+              "方向": "Output",
+              "流": "en: carbon dioxide (fossil)\nzh: 二氧化碳（化石源）",
+              "平均量": "123.7771921",
+              "结果量": "123.7771921",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Elementary flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "name": "Emissions"
+                },
+                {
+                  "level": "1",
+                  "name": "Emissions to air"
+                },
+                {
+                  "level": "2",
+                  "name": "Emissions to non-urban air or from high stacks"
+                }
+              ]
+            }
+          ],
+          "rowCount": 26
+        }
+      ],
+      "pageStatus": "api_projected",
+      "extractedAt": "2026-05-20T09:22:22.199Z"
+    }
+  ]
+}

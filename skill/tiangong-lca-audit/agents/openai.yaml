@@ -1,0 +1,7 @@
+interface:
+  display_name: "天工 LCA 数据审核"
+  short_description: "审核过程与模型数据，生成可复核意见"
+  default_prompt: "使用 $tiangong-lca-audit 审核我提供的天工 LCA 数据集，并给出可执行的修改建议。"
+
+policy:
+  allow_implicit_invocation: true

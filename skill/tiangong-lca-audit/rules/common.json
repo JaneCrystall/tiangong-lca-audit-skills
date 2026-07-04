@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "dataset_type": "all",
+  "rules": [
+    {
+      "id": "common.evidence.boundary",
+      "dimension": "evidence",
+      "rule_type": "deterministic",
+      "severity": "manual_review",
+      "condition": "A proposed finding has no direct field, exchange, model-node, or cross-field evidence in the supplied input.",
+      "evidence_required": ["supplied input"],
+      "decision": "Do not state the issue as verified.",
+      "suggestion": "Request the missing evidence or mark the issue for manual confirmation.",
+      "exceptions": [],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "05-数据质量评价方法.md",
+          "sections": ["数据审查", "数据验证"]
+        }
+      ]
+    },
+    {
+      "id": "common.optional.empty",
+      "dimension": "requiredness",
+      "rule_type": "deterministic",
+      "severity": "advisory",
+      "condition": "A non-required field is empty and its absence does not prevent a core audit check.",
+      "evidence_required": ["field requiredness", "affected audit dimension"],
+      "decision": "Do not create an audit finding solely for the empty field.",
+      "suggestion": "No modification is required unless the field is needed to explain a specific issue.",
+      "exceptions": ["The field is required by the current platform configuration.", "The absence prevents a core audit check."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "04-数据文档.md",
+          "sections": ["数据集合规要求", "具体要求：元数据信息"]
+        }
+      ]
+    },
+    {
+      "id": "common.optional.conflict",
+      "dimension": "cross_field_consistency",
+      "rule_type": "deterministic",
+      "severity": "blocking",
+      "condition": "An optional field is filled and directly conflicts with a core field, exchange, or model relationship.",
+      "evidence_required": ["conflicting values and their locations"],
+      "decision": "Treat the verified contradiction as a blocking issue.",
+      "suggestion": "Correct the conflicting statement or data so both locations express the same boundary and fact.",
+      "exceptions": ["The input documents a valid conversion, scope difference, or exception."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "05-数据质量评价方法.md",
+          "sections": ["一致性", "完整性"]
+        }
+      ]
+    },
+    {
+      "id": "common.language.semantic_consistency",
+      "dimension": "language",
+      "rule_type": "judgment",
+      "severity": "advisory",
+      "condition": "Chinese and English content describe different objects, boundaries, quantities, or uses, or contain material duplicated text.",
+      "evidence_required": ["both language values"],
+      "decision": "Report semantic conflicts; treat material conflicts as blocking and presentation-only issues as advisory.",
+      "suggestion": "Align both language versions with the confirmed object, boundary, quantity, and use.",
+      "exceptions": ["Only one language is supplied and bilingual content is not required."],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "04-数据文档.md",
+          "sections": ["命名", "过程命名", "产品和废物流命名"]
+        }
+      ]
+    },
+    {
+      "id": "common.conclusion.scope",
+      "dimension": "conclusion",
+      "rule_type": "deterministic",
+      "severity": "manual_review",
+      "condition": "The available input does not cover all core dimensions required for a full conclusion.",
+      "evidence_required": ["input coverage summary"],
+      "decision": "Limit the conclusion to the supplied scope or return information insufficient.",
+      "suggestion": "Provide the missing windows, exchanges, model structure, or linked processes.",
+      "exceptions": [],
+      "standard_refs": [
+        {
+          "source": "CFIA-LCA-database-guideline",
+          "file": "03-数据收集.md",
+          "sections": ["目标定义", "范围定义", "所需数据和信息类型/质量/来源"]
+        }
+      ]
+    }
+  ]
+}

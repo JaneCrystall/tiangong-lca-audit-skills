@@ -1,0 +1,416 @@
+{
+  "schemaVersion": "tiangong-audit-evaluation-cases-v1",
+  "generatedAt": "2026-05-20",
+  "sourceMappingFile": null,
+  "purpose": "Use these paired API samples and historical audit opinions to evaluate whether the audit workflow can reproduce the expected conclusion and major historical findings.",
+  "notes": [
+    "Raw API files may contain UUIDs, URLs, process names, and other non-public information. Do not share them externally without review.",
+    "Historical audit opinions are treated as historical-case references, not automatic fixed rules.",
+    "Expected findings should be matched semantically; model output does not need to copy the exact wording.",
+    "Evaluation fixtures are sanitized; raw API files are intentionally excluded."
+  ],
+  "cases": [
+    {
+      "caseId": "hc-heavy-naphtha-not-approved",
+      "label": "普通/问题样本",
+      "inputProjectedFile": "tests/fixtures/projected-api/process-audit-input-projected.json",
+      "processName": "加氢裂化(HC)重石脑油生产",
+      "processId": "00000000-0000-0000-0000-000000000001",
+      "processVersion": "01.01.000",
+      "expectedConclusion": "不通过",
+      "historicalAuditOpinion": [
+        "① 功能单位与清单量级不一致。“年供应量或生产量”中写的是 1 kg 加氢裂化(HC)重石脑油，但输出清单中【加氢裂化(HC)重石脑油】为1000kg。建议统一口径：如果本数据集以1000 kg重石脑油为参考流，则应在功能单位/基准流说明中明确；如果目标为 1 kg，则全部输入输出都应按 1 kg 产品折算。",
+        "② 多产品过程的建模角色没有说清楚。当前输出端除【加氢裂化(HC)重石脑油】外，还包括【加氢裂化尾油】【HC 轻石脑油】【HC 粗液化气】【加氢裂化航煤】【C5 馏分】【沸腾床石脑油】【干气】【蒸汽】等多个有价值产品或副产流。如果这是未分配的联合装置多产品单元过程，应在名称、说明和预期应用中明确；如果这是分配到重石脑油的产品数据集，则需要说明共同原料、氢气、电力、蒸汽和排放如何分配到重石脑油上。",
+        "③ 数据集类型建议调整为“单元过程，黑箱”。当前填为【单元过程，单一操作】，但该数据集覆盖 1#加氢裂化、2#加氢裂化、沸腾床渣油加氢等多个装置，以及反应、分馏、脱硫、氢气循环、催化剂在线置换等多个环节，更像一个联合装置的整体黑箱过程，不是单一操作。建议改为【单元过程，黑箱】。",
+        "④ 部分输出流的角色需要核查。【凝结水】【蒸汽（4.0MPa）】【蒸汽（1.3MPa）】【低压蒸汽】【重油加氢富胺液】等更像公用工程回收流或装置内部循环流，不一定应作为普通产品输出。建议明确这些流是外供产品、内部回用流，还是下游过程连接流；若为内部循环，不建议作为对外输出产品流处理。",
+        "⑤ 部分废水/废气流类型和分类不规范。【非甲烷挥发性有机化合物】当前为废物流，但如果其代表废气排放成分，应优先作为基础流排放到大气处理；【重油加氢含硫污水】当前为产品流，也明显不符合污水属性，应核查是否应改为废物流或进入废水处理过程的流。",
+        "⑥ 部分蒸汽和辅助物料名称过于泛化。如【蒸汽(MPa)】缺少明确压力等级；【催化剂; 催化处理; 在反应物】名称较泛，且分类路径不一定能反映加氢裂化催化剂属性。建议后续统一核查辅助物料和公用工程流名称，避免影响后续检索和模型连接。"
+      ],
+      "expectedIssuePoints": [
+        {
+          "topic": "功能单位与清单量级不一致",
+          "ruleId": "process.reference_flow.quantity_unit",
+          "expectedSeverity": "high",
+          "evidenceKeywords": [
+            "1 kg",
+            "1000 kg",
+            "加氢裂化(HC)重石脑油"
+          ],
+          "shouldMentionSuggestion": true
+        },
+        {
+          "topic": "多产品过程建模角色不清",
+          "ruleId": "process.coproduct.role_and_allocation",
+          "expectedSeverity": "high",
+          "evidenceKeywords": [
+            "多产品",
+            "副产流",
+            "分配",
+            "联合装置"
+          ],
+          "shouldMentionSuggestion": true
+        },
+        {
+          "topic": "数据集类型与过程边界不匹配",
+          "ruleId": "process.type.boundary_match",
+          "expectedSeverity": "medium",
+          "evidenceKeywords": [
+            "单元过程，单一操作",
+            "单元过程，黑箱"
+          ],
+          "shouldMentionSuggestion": true
+        },
+        {
+          "topic": "部分输出流角色需要核查",
+          "ruleId": "process.flow.semantic_match",
+          "expectedSeverity": "medium",
+          "evidenceKeywords": [
+            "凝结水",
+            "蒸汽",
+            "内部循环",
+            "外供产品"
+          ],
+          "shouldMentionSuggestion": true
+        },
+        {
+          "topic": "废水/废气流类型和分类不规范",
+          "ruleId": "process.flow.semantic_match",
+          "expectedSeverity": "high",
+          "evidenceKeywords": [
+            "非甲烷挥发性有机化合物",
+            "重油加氢含硫污水",
+            "基础流",
+            "废物流",
+            "产品流"
+          ],
+          "shouldMentionSuggestion": true
+        },
+        {
+          "topic": "辅助物料和公用工程流名称过于泛化",
+          "ruleId": "process.flow.semantic_match",
+          "expectedSeverity": "low",
+          "evidenceKeywords": [
+            "蒸汽(MPa)",
+            "催化剂"
+          ],
+          "shouldMentionSuggestion": true
+        }
+      ],
+      "evaluationFocus": [
+        "审核结果应为不通过。",
+        "应至少命中功能单位/量级、多产品建模角色、数据集类型、流类型分类四类核心问题。",
+        "允许输出顺序和措辞不同，但不能把历史案例参考表述成正式规则。"
+      ]
+    },
+    {
+      "caseId": "tap-water-approved",
+      "label": "审核通过样本",
+      "inputProjectedFile": "tests/fixtures/projected-api/process-audit-input-approved-projected.json",
+      "processName": "自来水生产",
+      "processId": "00000000-0000-0000-0000-000000000002",
+      "processVersion": "01.01.000",
+      "expectedConclusion": "通过",
+      "historicalAuditOpinion": [
+        "本单元过程数据集以自来水生产（深度处理法）为对象，定义了清晰的功能单位与系统边界，包含主要物质与能量输入、产品输出与典型排放项，数据清单结构完整。数据来源为上海市自来水厂实地调研数据，具备良好的时间、地域和技术代表性。数据项单位规范，符合标准格式，质量守恒基本满足。元数据与说明文档齐全，便于追溯与复用。整体质量较高，满足数据库收录标准。",
+        "This unit process dataset takes tap water production (advanced treatment process) as the object, defining a clear functional unit and system boundaries. It includes major material and energy inputs, product outputs, and typical emissions, presenting a complete data inventory structure. The data source relies on field research data from water treatment plants in Shanghai, demonstrating good temporal, geographical, and technological representativeness. The units of the data items are standardized, conforming to standard formats, and mass conservation is fundamentally satisfied. The metadata and documentation are complete, facilitating traceability and reuse. The overall quality is high, meeting the criteria for database inclusion."
+      ],
+      "expectedPositivePoints": [
+        {
+          "topic": "数据集对象和功能单位清晰",
+          "evidenceKeywords": [
+            "自来水生产",
+            "深度处理法",
+            "功能单位",
+            "系统边界"
+          ]
+        },
+        {
+          "topic": "输入输出清单结构完整",
+          "evidenceKeywords": [
+            "主要物质",
+            "能量输入",
+            "产品输出",
+            "典型排放"
+          ]
+        },
+        {
+          "topic": "数据来源和代表性较好",
+          "evidenceKeywords": [
+            "上海市自来水厂",
+            "实地调研",
+            "时间",
+            "地域",
+            "技术代表性"
+          ]
+        },
+        {
+          "topic": "单位和元数据较规范",
+          "evidenceKeywords": [
+            "单位规范",
+            "质量守恒",
+            "元数据",
+            "追溯"
+          ]
+        }
+      ],
+      "evaluationFocus": [
+        "审核结果应为通过。",
+        "不应仅因为若干历史高频空字段缺失就判定不通过。",
+        "通过说明应概括对象、边界、清单完整性、来源代表性和单位规范性。"
+      ]
+    },
+    {
+      "caseId": "lfp-battery-wet-recycling-not-approved",
+      "label": "审核不通过样本",
+      "inputProjectedFile": "tests/fixtures/projected-api/process-audit-input-noapproved-projected.json",
+      "processName": "磷酸铁锂动力电池湿法回收",
+      "processId": "00000000-0000-0000-0000-000000000003",
+      "processVersion": "01.01.000",
+      "expectedConclusion": "不通过",
+      "historicalAuditOpinion": [
+        "① 输入输出质量不守恒。当前功能单位为处理 1 kg 废弃磷酸铁锂电池，输入端也只有【废旧LFP电池】1kg，加上少量盐酸、氢氧化钠、氯化钙、去离子水、电力等。但输出端仅固体类输出就包括【氯化锂】0.357 kg、【塑料垃圾】2 kg、【废铜】1 kg、【废石墨】1.5 kg、【固体废物】5.93 kg 等，远远超过 1 kg 废电池本身的物质量。建议重新核查所有输出是否已按 1 kg 废旧 LFP 电池折算。",
+        "② 部分输出流名称与工艺对象不匹配。输出端出现【盐酸氯苯氨酮】4.01 kg，且被作为大气排放基础流。该名称与磷酸铁锂电池湿法回收工艺没有明显对应关系，也不像一般的盐酸雾、VOCs 或氟化氢排放名称。建议核查原环评中对应污染物是盐酸雾、氯化氢、VOCs，还是其他具体指标，并选用正确的排放流。",
+        "③ 粉尘流类型错误。输出端【粉尘】目前被归为废物流。如果该项对应破碎、筛分或投料过程产生的大气颗粒物，应建模为【基础流 > 排放到大气】。建议核对并修正其流类型和排放路径。",
+        "④ 过氧化钠输入流缺少参考单位和分类信息。输入端【过氧化钠; 工业级，7.5% 水溶液】的流类型显示为“单一物质”，但分类和参考单位为空，单位栏为“- ()”。这个会影响后续计算和单位换算，建议补全为规范产品流，并明确参考单位为质量。",
+        "⑤ 氟化氢排放路径建议核查。输出端【氟化氢】被归为“排放到大气，室内”。如果这是湿法回收过程的有组织或无组织废气排放，通常不应采用“室内”排放路径。建议核查原始排放口径，并调整为合适的大气排放路径。",
+        "⑥英文一般性说明存在重复粘贴。英文说明中同一段内容重复了多次，建议删除重复内容，保留一版即可。"
+      ],
+      "expectedIssuePoints": [
+        {
+          "topic": "输入输出质量不守恒",
+          "ruleId": "process.inventory.quantity_plausibility",
+          "expectedSeverity": "high",
+          "evidenceKeywords": [
+            "1 kg",
+            "废旧LFP电池",
+            "氯化锂",
+            "塑料垃圾",
+            "废铜",
+            "废石墨",
+            "固体废物"
+          ],
+          "shouldMentionSuggestion": true
+        },
+        {
+          "topic": "输出流名称与工艺对象不匹配",
+          "ruleId": "process.flow.semantic_match",
+          "expectedSeverity": "high",
+          "evidenceKeywords": [
+            "盐酸氯苯氨酮",
+            "磷酸铁锂电池湿法回收",
+            "排放基础流"
+          ],
+          "shouldMentionSuggestion": true
+        },
+        {
+          "topic": "粉尘流类型错误",
+          "ruleId": "process.flow.semantic_match",
+          "expectedSeverity": "medium",
+          "evidenceKeywords": [
+            "粉尘",
+            "废物流",
+            "基础流",
+            "排放到大气"
+          ],
+          "shouldMentionSuggestion": true
+        },
+        {
+          "topic": "过氧化钠输入流缺少参考单位和分类信息",
+          "ruleId": "process.flow.semantic_match",
+          "expectedSeverity": "medium",
+          "evidenceKeywords": [
+            "过氧化钠",
+            "参考单位",
+            "分类",
+            "- ()"
+          ],
+          "shouldMentionSuggestion": true
+        },
+        {
+          "topic": "氟化氢排放路径建议核查",
+          "ruleId": "process.flow.semantic_match",
+          "expectedSeverity": "medium",
+          "evidenceKeywords": [
+            "氟化氢",
+            "排放到大气，室内"
+          ],
+          "shouldMentionSuggestion": true
+        },
+        {
+          "topic": "英文一般性说明重复",
+          "ruleId": "common.language.semantic_consistency",
+          "expectedSeverity": "low",
+          "evidenceKeywords": [
+            "英文说明",
+            "重复"
+          ],
+          "shouldMentionSuggestion": true
+        }
+      ],
+      "evaluationFocus": [
+        "审核结果应为不通过。",
+        "应至少命中质量守恒、异常输出流名称、粉尘流类型、过氧化钠单位分类、氟化氢排放路径这五类问题。",
+        "英文说明重复属于格式/语言类问题，可以作为低优先级问题输出。"
+      ]
+    },
+    {
+      "caseId": "recycled-copper-rod-partly-terminated-not-approved",
+      "label": "审核不通过样本",
+      "inputProjectedFile": null,
+      "processName": "再生铜杆制造",
+      "processId": "00000000-0000-0000-0000-000000000004",
+      "processVersion": "01.01.000",
+      "expectedConclusion": "不通过",
+      "historicalAuditOpinion": [
+        "① 数据集类型填为 Partly terminated system，但数据集描述的是以废铜为原料生产再生铜杆的多个厂内工序，未说明哪些上游过程已终止、哪些输入仍调用背景过程。建议改为单元过程，黑箱，或补充部分终止系统边界证据。",
+        "② 数据切断和完整性原则写从摇篮到大门，但一般性说明又写不含运输过程。建议改写为实际包含的废铜入厂后熔炼、连铸、轧制、清洗及厂内辅助过程，并列明排除活动和定量截断原则。",
+        "③ 输入为废铜且产品为再生铜杆，但未说明回收建模口径及废铜收集、分选、预处理、运输和上游原生铜负荷是否纳入。建议补充 cut-off、recycled-content 或其他回收口径。",
+        "④ 英文说明写 recycled copper wire，中文和输出为再生铜杆。建议统一为 recycled copper rod。",
+        "⑤ 氧气流名称为液化氧气但使用体积单位，建议核查是液氧质量/体积还是气态氧体积，并选择匹配流或补充换算。",
+        "⑥ 自来水输入和水体排放并存，但未说明清洗废水、循环水、蒸发损失、污泥含水和废水处理边界。建议补充水量去向和废水处理边界。"
+      ],
+      "expectedIssuePoints": [
+        {
+          "topic": "部分终止系统缺少边界证据",
+          "ruleId": "process.type.partly_terminated_evidence",
+          "expectedSeverity": "high",
+          "evidenceKeywords": [
+            "Partly terminated system",
+            "单元过程，黑箱",
+            "上游",
+            "背景过程"
+          ],
+          "shouldMentionSuggestion": true
+        },
+        {
+          "topic": "从摇篮到大门与不含运输冲突",
+          "ruleId": "process.boundary.lifecycle_stage_contradiction",
+          "expectedSeverity": "high",
+          "evidenceKeywords": [
+            "从摇篮到大门",
+            "不含运输",
+            "排除活动"
+          ],
+          "shouldMentionSuggestion": true
+        },
+        {
+          "topic": "再生料和废铜输入负担口径不清",
+          "ruleId": "process.recycling.secondary_material_burden",
+          "expectedSeverity": "high",
+          "evidenceKeywords": [
+            "废铜",
+            "cut-off",
+            "recycled-content",
+            "预处理"
+          ],
+          "shouldMentionSuggestion": true
+        },
+        {
+          "topic": "中英文产品形态不一致",
+          "ruleId": "common.language.semantic_consistency",
+          "expectedSeverity": "high",
+          "evidenceKeywords": [
+            "铜杆",
+            "copper wire",
+            "copper rod"
+          ],
+          "shouldMentionSuggestion": true
+        },
+        {
+          "topic": "流形态和单位不一致",
+          "ruleId": "process.flow.form_unit_consistency",
+          "expectedSeverity": "high",
+          "evidenceKeywords": [
+            "氧气（液化）",
+            "体积",
+            "m3"
+          ],
+          "shouldMentionSuggestion": true
+        },
+        {
+          "topic": "水输入和废水排放边界不清",
+          "ruleId": "process.inventory.water_balance_boundary",
+          "expectedSeverity": "medium",
+          "evidenceKeywords": [
+            "自来水",
+            "COD",
+            "废水处理边界"
+          ],
+          "shouldMentionSuggestion": true
+        }
+      ],
+      "evaluationFocus": [
+        "审核结果应为不通过。",
+        "应至少命中数据集类型、生命周期边界、回收口径、中英文对象、流形态单位和水边界六类问题。",
+        "分类和年供应量可以作为建议修改输出，元数据生成者或背景报告缺失不得在已有等效来源时机械阻断。"
+      ]
+    },
+    {
+      "caseId": "abalone-aquaculture-raw-tidas-not-approved",
+      "label": "raw TIDAS 过程审核不通过样本",
+      "inputProjectedFile": null,
+      "processName": "鲍鱼养殖",
+      "processId": "00000000-0000-0000-0000-000000000005",
+      "processVersion": "01.01.000",
+      "expectedConclusion": "不通过",
+      "historicalAuditOpinion": [
+        "① 数据集名称和过程说明指向鲍鱼养殖，但核心输出或来源对象出现大黄鱼，审核对象不一致。建议统一过程名称、说明和核心输出对象。",
+        "② 功能单位或基准量与输出交换数量不一致。建议统一基准量和所有输入输出折算口径。",
+        "③ 部分交换流能识别 UUID 但缺少 flow version，无法区分底层流版本。建议补充流数据集版本或重新导出完整流身份信息。",
+        "④ heat 或 chlorine 等交换无法解析到底层流类型、分类、参考单位或版本。建议重新选择可解析的规范流。",
+        "⑤ oxygen、calcium carbonate 等作为外购投入品出现，但底层 flow type 为 elementary/resource flow。建议改为产品流，或说明其为环境交换。",
+        "⑥ 数据切断和完整性原则仅填写为 '-'，无法判断截断标准、覆盖率和排除活动。建议补充完整截断和完整性说明。"
+      ],
+      "expectedIssuePoints": [
+        {
+          "topic": "鲍鱼和大黄鱼审核对象错配",
+          "ruleId": "process.object.consistency",
+          "expectedSeverity": "high",
+          "evidenceKeywords": ["鲍鱼", "大黄鱼", "核心输出"],
+          "shouldMentionSuggestion": true
+        },
+        {
+          "topic": "基准量与清单输出不一致",
+          "ruleId": "process.reference_flow.quantity_unit",
+          "expectedSeverity": "high",
+          "evidenceKeywords": ["功能单位", "基准量", "输出交换"],
+          "shouldMentionSuggestion": true
+        },
+        {
+          "topic": "交换流版本缺失",
+          "ruleId": "process.flow.version_identity",
+          "expectedSeverity": "medium",
+          "evidenceKeywords": ["UUID", "version", "流数据集版本"],
+          "shouldMentionSuggestion": true
+        },
+        {
+          "topic": "heat/chlorine 等交换无法解析",
+          "ruleId": "process.flow.semantic_match",
+          "expectedSeverity": "medium",
+          "evidenceKeywords": ["heat", "chlorine", "流类型", "分类"],
+          "shouldMentionSuggestion": true
+        },
+        {
+          "topic": "外购投入品误用 elementary/resource flow",
+          "ruleId": "process.flow.purchased_elementary_input_role",
+          "expectedSeverity": "high",
+          "evidenceKeywords": ["oxygen", "calcium carbonate", "elementary", "产品流"],
+          "shouldMentionSuggestion": true
+        },
+        {
+          "topic": "cutoff/completeness 占位符",
+          "ruleId": "process.boundary.cutoff_placeholder",
+          "expectedSeverity": "medium",
+          "evidenceKeywords": ["数据切断和完整性原则", "-", "截断标准"],
+          "shouldMentionSuggestion": true
+        }
+      ],
+      "evaluationFocus": [
+        "审核结果应为不通过。",
+        "raw TIDAS 解析应能区分交换短描述缺中文和底层 flow 数据集名称缺中文。",
+        "对象错配和基准量不一致可以阻断；flow version、heat/chlorine 解析失败和 cutoff 占位符应按证据强弱处理。",
+        "oxygen/calcium carbonate 只有在上下文显示外购投入品时才要求改为产品流；若为环境交换，应要求说明而非绝对判错。"
+      ]
+    }
+  ]
+}

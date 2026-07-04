@@ -1,0 +1,915 @@
+{
+  "schemaVersion": "page-snapshot-v1",
+  "projectionVersion": "tiangong-api-audit-input-v1",
+  "pageTitle": "天工 API 过程数据（审核通过样本）",
+  "url": "",
+  "pageStatus": "api_projected",
+  "extractionMethod": "tiangong-api",
+  "extractedAt": "2026-05-20T09:33:21.206Z",
+  "processId": "00000000-0000-0000-0000-000000000001",
+  "processVersion": "01.01.000",
+  "omittedFields": [
+    {
+      "field": "数据集有效期至",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "数据选择和组合原则",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "数据处理和外推原则",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "采样程序",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "数据收集期",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "供应或生产覆盖率",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "年供应量或生产量",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "不确定性调整",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "数据集使用建议",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "工作流和发布状态",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "注册号",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    },
+    {
+      "field": "访问和使用限制",
+      "reason": "字段为空或 API 未提供，按项目策略不发送"
+    }
+  ],
+  "precheckFindings": [
+    {
+      "type": "deterministic_context",
+      "conclusion": "高频非必填字段已按项目策略省略，不应仅因这些字段为空或未发送而输出审核问题。",
+      "fields": [
+        "数据集有效期至",
+        "数据选择和组合原则",
+        "数据处理和外推原则",
+        "采样程序",
+        "数据收集期",
+        "供应或生产覆盖率",
+        "年供应量或生产量",
+        "不确定性调整",
+        "数据集使用建议",
+        "工作流和发布状态",
+        "注册号",
+        "访问和使用限制"
+      ]
+    },
+    {
+      "type": "deterministic_acceptance",
+      "conclusion": "单元过程或黑箱类型的 LCI 方法字段为不适用或空值，按当前口径可接受。",
+      "fields": [
+        "数据集类型",
+        "LCI方法原则",
+        "LCI方法学途径"
+      ]
+    },
+    {
+      "type": "deterministic_context",
+      "conclusion": "功能单位或基准流中的 referenceToReferenceFlow 指向输入/输出交换的内部ID，不是投影表显示序号；当前已匹配内部ID 0 的基准流，不应按显示序号判定基准流错位。",
+      "fields": [
+        "功能单位或基准流",
+        "输入/输出",
+        "内部ID"
+      ]
+    },
+    {
+      "type": "deterministic_context",
+      "conclusion": "已识别基准输出流及结果量；定量产品或过程属性缺失可作为建议补充，但在基准输出和数量已明确时不应单独作为必改或不通过理由。",
+      "fields": [
+        "功能单位或基准流",
+        "定量产品或过程属性",
+        "输入/输出"
+      ]
+    },
+    {
+      "type": "deterministic_context",
+      "conclusion": "输入/输出已读取：输入 10 条，输出 3 条。",
+      "fields": [
+        "输入/输出"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "name": "过程信息",
+      "fields": {
+        "基本名称": {
+          "zh": "自来水生产",
+          "en": "Tap Water Production"
+        },
+        "处理、标准、路线": {
+          "zh": "深度处理法，中型水厂，加权平均",
+          "en": "Advanced Treatment Process, Medium Water Treatment Plant, Weighted Average"
+        },
+        "混合和位置类型": {
+          "zh": "生产混合，在工厂",
+          "en": "Production blending, at the plant"
+        },
+        "数据集一般性说明": {
+          "zh": "本数据集反映上海市 3 座采用深度处理工艺的中型自来水厂在 2021 年的运行状况。所有前景数据按各厂年制水量进行加权平均，用于表征上海地区中型深度处理自来水厂的典型技术与环境绩效水平。为保护企业隐私，单厂原始数据不对外公开，本数据集不对应任何单一具体水厂。",
+          "en": "This dataset reflects the operational status of three medium-scale water treatment plants in Shanghai employing advanced treatment processes during 2021. All forward-looking data are weighted averages based on each plant's annual water production volume, representing typical technical and environmental performance levels for medium-scale advanced treatment plants in the Shanghai region. To protect corporate privacy, raw data from individual plants are not publicly disclosed; this dataset does not correspond to any single specific water treatment facility."
+        },
+        "分类": [
+          {
+            "level": "0",
+            "classId": "E",
+            "name": "Water supply; sewerage, waste management and remediation activities"
+          },
+          {
+            "level": "1",
+            "classId": "36",
+            "name": "Water collection, treatment and supply"
+          },
+          {
+            "level": "2",
+            "classId": "360",
+            "name": "Water collection, treatment and supply"
+          },
+          {
+            "level": "3",
+            "classId": "3600",
+            "name": "Water collection, treatment and supply"
+          }
+        ],
+        "参考年份": 2021,
+        "地理位置": {
+          "@location": "CN-SH"
+        },
+        "技术描述及背景系统": {
+          "zh": "本数据集代表上海市 3 座采用深度处理工艺的中型自来水厂在 2021 年、按年制水量加权后的平均技术水平。厂内处理工艺在功能上可概括为：取水与提升 → 净水处理 → 深度处理 → 消毒及清水储存 → 出厂供水。",
+          "en": "This dataset represents the average technical performance of three medium water treatment plants in Shanghai employing advanced treatment processes in 2021, weighted by annual water production volume. The functional sequence of treatment processes within the plants can be summarized as: water intake and pumping → primary treatment → advanced treatment → disinfection and clear water storage → final water supply."
+        },
+        "功能单位或基准流": {
+          "@type": "Reference flow(s)",
+          "referenceToReferenceFlow": "0"
+        }
+      },
+      "missingFields": [
+        "定量产品或过程属性",
+        "同义词",
+        "引用数据源标识符",
+        "运营、供应或生产子地点",
+        "产品或工艺的技术用途"
+      ],
+      "tables": [],
+      "pageStatus": "api_projected",
+      "extractedAt": "2026-05-20T09:33:21.206Z"
+    },
+    {
+      "name": "建模信息",
+      "fields": {
+        "数据集类型": "Unit process, black box",
+        "数据来源、处理和代表性": {
+          "type": "source data set",
+          "version": "01.01.000",
+          "description": {
+            "zh": "上海市自来水厂实地调研数据",
+            "en": "Field Research Data from multiple water supply plants in Shanghai"
+          }
+        },
+        "使用的数据来源": {
+          "type": "source data set",
+          "version": "01.01.000",
+          "description": {
+            "zh": "上海市自来水厂实地调研数据",
+            "en": "Field Research Data from multiple water supply plants in Shanghai"
+          }
+        },
+        "数据切断和完整性原则": {
+          "zh": "本数据集在“自来水厂取水及提升设施入口 → 厂内净水处理与深度处理 → 清水储存准备运输至出厂供水”的边界内，尽可能完整统计了原水与出厂水水量、电力消耗以及主要水处理药剂的用量，同时考虑污泥等主要物料的产生，并按 3家中型深度处理水厂的年制水量进行加权。由于监测与资料获取条件的限制，未单独计入办公及生活用能、未监测的微量污染物排放等对质量与能量平衡贡献极小的项目，其环境影响相对于主要物料和能源可认为可以忽略。上游水库取水与预处理、水厂基础设施（土建及设备）的建设、扩建与拆除过程，以及厂外输配管网和终端用水过程均不在本数据集系统边界之内。",
+          "en": "This dataset comprehensively tracks raw water and treated water volumes, electricity consumption, and key chemical dosages within the boundary spanning “water intake and pumping facilities → on-site purification and advanced treatment → treated water storage prior to distribution,” while accounting for major material outputs like sludge. Data is weighted based on the annual production capacity of three medium-scale advanced treatment plants. Due to limitations in monitoring and data acquisition, items contributing minimally to mass and energy balances—such as energy consumption for office and domestic use, and emissions of unmonitored trace pollutants—are excluded. Their environmental impact is considered negligible relative to primary materials and energy. The following processes are excluded from the system boundary of this dataset: upstream reservoir water intake and pretreatment; construction, expansion, and demolition of plant infrastructure (civil works and equipment); external transmission and distribution pipelines; and end-use processes."
+        },
+        "参数与边界备注": {
+          "zh": "目前尚无针对自来水厂规模划分的统一专门标准。本数据集在对案例水厂规模进行表述时，参考《城市给水工程规划规范》（GB 50282-2016）中表 7.0.6 关于按给水规模划分水厂用地规模的分级方法，将日供水能力 Q ≤ 10 万 m³/d 的水厂划分为小型水厂，10 万 < Q ≤ 30 万 m³/d 的划分为中型水厂，Q > 30 万 m³/d 的划分为大型水厂，特此说明。",
+          "en": "At present, there is no unified dedicated standard for classifying the scale of drinking water treatment plants. In this dataset, when describing the size of the case plants, we refer to Table 7.0.6 of the Code for urban water supply engineering planning (GB 50282-2016), which classifies land-use scales of water treatment plants according to their water supply capacity. Accordingly, plants with a daily water supply capacity Q ≤ 100,000 m³/d are defined as small-scale, those with 100,000 < Q ≤ 300,000 m³/d as medium-scale, and those with Q > 300,000 m³/d as large-scale. This clarification is provided here for reference."
+        }
+      },
+      "missingFields": [
+        "LCI方法原则",
+        "偏离LCI方法原则/解释",
+        "LCI方法学途径",
+        "偏离LCI方法应用/解释"
+      ],
+      "tables": [],
+      "pageStatus": "api_projected",
+      "extractedAt": "2026-05-20T09:33:21.206Z"
+    },
+    {
+      "name": "管理信息",
+      "fields": {
+        "数据录入时间": "2026-02-28T05:54:45.366Z",
+        "数据集格式": {
+          "type": "source data set",
+          "version": "03.00.003",
+          "description": {
+            "en": "ILCD format",
+            "zh": "ILCD 数据格式"
+          }
+        },
+        "数据录入人": {
+          "status": "已填写",
+          "type": "contact data set",
+          "version": "01.01.000"
+        },
+        "数据集委托方": {
+          "status": "已填写",
+          "type": "contact data set",
+          "version": "01.01.000"
+        },
+        "预期应用": {
+          "zh": "本数据集预期用于以城市自来水厂为核心的供水系统生命周期评价中，表示自来水厂内从取水及提升设施入口到出厂自来水阶段的净水处理（包含深度处理）的过程，可与上游“水库取水与预处理”数据集及下游输配水过程组合使用。适用于采用常规处理并叠加深度处理工艺、规模相近的中型地表水自来水厂的情形，不适用于仅采用常规处理的水厂、地下水源水厂，以及工业特种用水、再生水等其他类型供水系统。",
+          "en": "This dataset is intended for use in the life cycle assessment of water supply systems centered on municipal water treatment plants. It represents the water purification process (including advanced treatment) within the plant, from the intake and pumping facility inlet to the point of finished water discharge. It can be combined with upstream “reservoir intake and pretreatment” datasets and downstream water distribution processes. It is applicable to medium-scale surface water treatment plants of comparable size employing conventional treatment with additional advanced treatment processes. This dataset is not suitable for plants using conventional treatment alone, groundwater source plants, or other water supply systems such as industrial specialty water or reclaimed water."
+        },
+        "版权": "false",
+        "许可类型": "Free of charge for all users and uses",
+        "数据集版本": "01.01.000",
+        "永久数据集统一资源标识符": "https://example.invalid/dataset/1",
+        "数据集拥有者": {
+          "status": "已填写",
+          "type": "contact data set",
+          "version": "01.01.000"
+        }
+      },
+      "missingFields": [
+        "转换前原始数据集来源",
+        "数据集生成者/建模者"
+      ],
+      "tables": [],
+      "pageStatus": "api_projected",
+      "extractedAt": "2026-05-20T09:33:21.206Z"
+    },
+    {
+      "name": "输入/输出",
+      "fields": {
+        "输入数量": 10,
+        "输出数量": 3
+      },
+      "tables": [
+        {
+          "caption": "输入",
+          "rows": [
+            {
+              "序号": 3,
+              "内部ID": "2",
+              "方向": "Input",
+              "流": "en: Polyaluminium Chloride\nzh: 聚合氯化铝",
+              "平均量": "2437090.26797919",
+              "结果量": "2437090.26797919",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "数据来源": [
+                {
+                  "type": "source data set",
+                  "version": "01.01.000",
+                  "description": {
+                    "zh": "上海市自来水厂实地调研数据",
+                    "en": "Field Research Data from multiple water supply plants in Shanghai"
+                  }
+                }
+              ],
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "35",
+                  "name": "Other chemical products; man-made fibres"
+                },
+                {
+                  "level": "2",
+                  "classId": "354",
+                  "name": "Chemical products n.e.c."
+                },
+                {
+                  "level": "3",
+                  "classId": "3549",
+                  "name": "Other chemical products"
+                },
+                {
+                  "level": "4",
+                  "classId": "35499",
+                  "name": "Other chemical products n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 4,
+              "内部ID": "3",
+              "方向": "Input",
+              "流": "en: Aluminium sulfate, powder\nzh: 硫酸铝，粉末",
+              "平均量": "171819.712907662",
+              "结果量": "171819.712907662",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "数据来源": [
+                {
+                  "type": "source data set",
+                  "version": "01.01.000",
+                  "description": {
+                    "zh": "上海市自来水厂实地调研数据",
+                    "en": "Field Research Data from multiple water supply plants in Shanghai"
+                  }
+                }
+              ],
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "35",
+                  "name": "Other chemical products; man-made fibres"
+                },
+                {
+                  "level": "2",
+                  "classId": "354",
+                  "name": "Chemical products n.e.c."
+                },
+                {
+                  "level": "3",
+                  "classId": "3549",
+                  "name": "Other chemical products"
+                },
+                {
+                  "level": "4",
+                  "classId": "35499",
+                  "name": "Other chemical products n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 5,
+              "内部ID": "4",
+              "方向": "Input",
+              "流": "en: Sodium hypochlorite; Purity ≥ 10.0%, used as disinfectant and bleach;  for production mixing; At the factory\nzh: 次氯酸钠; 纯度≥10.0%，用作消毒剂和漂白剂; 生产混合；在工厂",
+              "平均量": "889786.409686443",
+              "结果量": "889786.409686443",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "数据来源": [
+                {
+                  "type": "source data set",
+                  "version": "01.01.000",
+                  "description": {
+                    "zh": "上海市自来水厂实地调研数据",
+                    "en": "Field Research Data from multiple water supply plants in Shanghai"
+                  }
+                }
+              ],
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "1",
+                  "name": "Ores and minerals; electricity, gas and water"
+                },
+                {
+                  "level": "1",
+                  "classId": "16",
+                  "name": "Other minerals"
+                },
+                {
+                  "level": "2",
+                  "classId": "162",
+                  "name": "Salt and pure sodium chloride; sea water"
+                },
+                {
+                  "level": "3",
+                  "classId": "1620",
+                  "name": "Salt and pure sodium chloride; sea water"
+                },
+                {
+                  "level": "4",
+                  "classId": "16200",
+                  "name": "Salt and pure sodium chloride; sea water"
+                }
+              ]
+            },
+            {
+              "序号": 6,
+              "内部ID": "5",
+              "方向": "Input",
+              "流": "en: Ammonium sulfate; Preparation of ammonium sulfate; Production mix, in the factory\nzh: 硫酸铵; 硫酸铵的制备; 生产混合，在工厂",
+              "平均量": "25671.3313851116",
+              "结果量": "25671.3313851116",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "数据来源": [
+                {
+                  "type": "source data set",
+                  "version": "01.01.000",
+                  "description": {
+                    "zh": "上海市自来水厂实地调研数据",
+                    "en": "Field Research Data from multiple water supply plants in Shanghai"
+                  }
+                }
+              ],
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "34",
+                  "name": "Basic chemicals"
+                },
+                {
+                  "level": "2",
+                  "classId": "342",
+                  "name": "Basic inorganic chemicals n.e.c."
+                },
+                {
+                  "level": "3",
+                  "classId": "3424",
+                  "name": "Phosphates of triammonium; salts and peroxysalts of inorganic acids and metals n.e.c."
+                },
+                {
+                  "level": "4",
+                  "classId": "34240",
+                  "name": "Phosphates of triammonium; salts and peroxysalts of inorganic acids and metals n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 7,
+              "内部ID": "6",
+              "方向": "Input",
+              "流": "en: Liquid Oxygen\nzh: 液氧",
+              "平均量": "964335.688664857",
+              "结果量": "964335.688664857",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "数据来源": [
+                {
+                  "type": "source data set",
+                  "version": "01.01.000",
+                  "description": {
+                    "zh": "上海市自来水厂实地调研数据",
+                    "en": "Field Research Data from multiple water supply plants in Shanghai"
+                  }
+                }
+              ],
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "34",
+                  "name": "Basic chemicals"
+                },
+                {
+                  "level": "2",
+                  "classId": "342",
+                  "name": "Basic inorganic chemicals n.e.c."
+                },
+                {
+                  "level": "3",
+                  "classId": "3421",
+                  "name": "Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+                },
+                {
+                  "level": "4",
+                  "classId": "34210",
+                  "name": "Hydrogen, nitrogen, oxygen, carbon dioxide and rare gases; inorganic oxygen compounds of non-metals n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 8,
+              "内部ID": "7",
+              "方向": "Input",
+              "流": "zh: 交流电;  电力混合; 消费组合, 到用户; 1-35kV\nen: alternating current; electricity mix; consumption mix; 1-35kV",
+              "平均量": "42001592.76406872",
+              "结果量": "42001592.76406872",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "数据来源": [
+                {
+                  "type": "source data set",
+                  "version": "01.01.000",
+                  "description": {
+                    "zh": "上海市自来水厂实地调研数据",
+                    "en": "Field Research Data from multiple water supply plants in Shanghai"
+                  }
+                }
+              ],
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "1",
+                  "name": "Ores and minerals; electricity, gas and water"
+                },
+                {
+                  "level": "1",
+                  "classId": "17",
+                  "name": "Electricity, town gas, steam and hot water"
+                },
+                {
+                  "level": "2",
+                  "classId": "171",
+                  "name": "Electrical energy"
+                },
+                {
+                  "level": "3",
+                  "classId": "1710",
+                  "name": "Electrical energy"
+                },
+                {
+                  "level": "4",
+                  "classId": "17100",
+                  "name": "Electrical energy"
+                }
+              ]
+            },
+            {
+              "序号": 9,
+              "内部ID": "8",
+              "方向": "Input",
+              "流": "zh: 阳离子聚丙烯酰胺; 未区分具体生产工艺; 生产混合，在工厂\nen: cationic polyacrylamide (CPAM); Without specifying the specific production process; Production blending, at the factory",
+              "平均量": "18874.4791353827",
+              "结果量": "18874.4791353827",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "数据来源": [
+                {
+                  "type": "source data set",
+                  "version": "01.01.000",
+                  "description": {
+                    "zh": "上海市自来水厂实地调研数据",
+                    "en": "Field Research Data from multiple water supply plants in Shanghai"
+                  }
+                }
+              ],
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "35",
+                  "name": "Other chemical products; man-made fibres"
+                },
+                {
+                  "level": "2",
+                  "classId": "354",
+                  "name": "Chemical products n.e.c."
+                },
+                {
+                  "level": "3",
+                  "classId": "3549",
+                  "name": "Other chemical products"
+                },
+                {
+                  "level": "4",
+                  "classId": "35499",
+                  "name": "Other chemical products n.e.c."
+                }
+              ]
+            },
+            {
+              "序号": 10,
+              "内部ID": "9",
+              "方向": "Input",
+              "流": "zh: 原水; 到达自来水厂的水库地表水; 在工厂\nen: raw water; Reservoir surface water; at the plant",
+              "平均量": "58805645.9091475",
+              "结果量": "58805645.9091475",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "数据来源": [
+                {
+                  "type": "source data set",
+                  "version": "01.01.000",
+                  "description": {
+                    "zh": "上海市自来水厂实地调研数据",
+                    "en": "Field Research Data from multiple water supply plants in Shanghai"
+                  }
+                }
+              ],
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "1",
+                  "name": "Ores and minerals; electricity, gas and water"
+                },
+                {
+                  "level": "1",
+                  "classId": "18",
+                  "name": "Natural water"
+                },
+                {
+                  "level": "2",
+                  "classId": "180",
+                  "name": "Natural water"
+                },
+                {
+                  "level": "3",
+                  "classId": "1800",
+                  "name": "Natural water"
+                },
+                {
+                  "level": "4",
+                  "classId": "18000",
+                  "name": "Natural water"
+                }
+              ]
+            },
+            {
+              "序号": 11,
+              "内部ID": "10",
+              "方向": "Input",
+              "流": "zh: 非铰接货车运输; MDV，总质量8.5–10.5吨，柴油驱动，货运; 消费混合，面向终端消费者; 8.5–10.5吨车辆总质量 / 典型载货能力\nen: Rigid Truck transport; MDV, Total weight 8.5–10.5 t, diesel driven, cargo; consumption mix, to consumer; 8.5–10.5 t gross weight / typical payload capacity",
+              "平均量": "15327968.7125976",
+              "结果量": "15327968.7125976",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "数据来源": [
+                {
+                  "type": "source data set",
+                  "version": "01.01.000",
+                  "description": {
+                    "zh": "上海市自来水厂实地调研数据",
+                    "en": "Field Research Data from multiple water supply plants in Shanghai"
+                  }
+                }
+              ],
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "6",
+                  "name": "Distributive trade services; accommodation, food and beverage serving services; transport services; and electricity, gas and water distribution services"
+                },
+                {
+                  "level": "1",
+                  "classId": "65",
+                  "name": "Freight transport services"
+                },
+                {
+                  "level": "2",
+                  "classId": "651",
+                  "name": "Land transport services of freight"
+                },
+                {
+                  "level": "3",
+                  "classId": "6511",
+                  "name": "Road transport services of freight"
+                },
+                {
+                  "level": "4",
+                  "classId": "65119",
+                  "name": "Other road transport services of freight"
+                }
+              ]
+            },
+            {
+              "序号": 12,
+              "内部ID": "11",
+              "方向": "Input",
+              "流": "zh: 非铰接货车运输; HDV，总质量25.0–31.0吨，柴油驱动，货运; 消费混合，面向终端消费者; 25.0–31.0吨车辆总质量 / 典型载货能力\nen: Rigid Truck transport; HDV, Total weight 25.0–31.0 t, diesel driven, cargo; consumption mix, to consumer; 25.0–31.0 t gross weight / typical payload capacity",
+              "平均量": "24309042306.1545",
+              "结果量": "24309042306.1545",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "6",
+                  "name": "Distributive trade services; accommodation, food and beverage serving services; transport services; and electricity, gas and water distribution services"
+                },
+                {
+                  "level": "1",
+                  "classId": "65",
+                  "name": "Freight transport services"
+                },
+                {
+                  "level": "2",
+                  "classId": "651",
+                  "name": "Land transport services of freight"
+                },
+                {
+                  "level": "3",
+                  "classId": "6511",
+                  "name": "Road transport services of freight"
+                },
+                {
+                  "level": "4",
+                  "classId": "65119",
+                  "name": "Other road transport services of freight"
+                }
+              ]
+            }
+          ],
+          "rowCount": 10
+        },
+        {
+          "caption": "输出",
+          "rows": [
+            {
+              "序号": 1,
+              "内部ID": "0",
+              "方向": "Output",
+              "流": "en: Tap water; Water production supply; Production mix, in the factory\nzh: 自来水; 水的生产供应; 生产混合，在工厂",
+              "平均量": "57721587448.4855",
+              "结果量": "57721587448.4855",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "是",
+              "数据来源": [
+                {
+                  "type": "source data set",
+                  "version": "01.01.000",
+                  "description": {
+                    "zh": "上海市自来水厂实地调研数据",
+                    "en": "Field Research Data from multiple water supply plants in Shanghai"
+                  }
+                }
+              ],
+              "流类型": "Product flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "1",
+                  "name": "Ores and minerals; electricity, gas and water"
+                },
+                {
+                  "level": "1",
+                  "classId": "18",
+                  "name": "Natural water"
+                },
+                {
+                  "level": "2",
+                  "classId": "180",
+                  "name": "Natural water"
+                },
+                {
+                  "level": "3",
+                  "classId": "1800",
+                  "name": "Natural water"
+                },
+                {
+                  "level": "4",
+                  "classId": "18000",
+                  "name": "Natural water"
+                }
+              ]
+            },
+            {
+              "序号": 2,
+              "内部ID": "1",
+              "方向": "Output",
+              "流": "en: Sludge\nzh: 污泥",
+              "平均量": "5122975.38474719",
+              "结果量": "5122975.38474719",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "数据来源": [
+                {
+                  "type": "source data set",
+                  "version": "01.01.000",
+                  "description": {
+                    "en": "Operational insights into carbon dynamics and decarbonization pathways in megacity water supply plants. ",
+                    "zh": "对特大城市供水厂碳动态与脱碳路径的运行洞察 "
+                  }
+                }
+              ],
+              "流类型": "Waste flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "3",
+                  "name": "Other transportable goods, except metal products, machinery and equipment"
+                },
+                {
+                  "level": "1",
+                  "classId": "39",
+                  "name": "Wastes or scraps"
+                },
+                {
+                  "level": "2",
+                  "classId": "399",
+                  "name": "Other wastes and scraps"
+                },
+                {
+                  "level": "3",
+                  "classId": "3992",
+                  "name": "Sewage sludge"
+                },
+                {
+                  "level": "4",
+                  "classId": "39920",
+                  "name": "Sewage sludge"
+                }
+              ]
+            },
+            {
+              "序号": 13,
+              "内部ID": "12",
+              "方向": "Output",
+              "流": "en: Wastewater; Secondary/Tertiary Treatment; at plant\nzh: 废水; 二/三级处理; 在工厂",
+              "平均量": "1083443.06316705",
+              "结果量": "1083443.06316705",
+              "数据推导类型/状态": "Calculated",
+              "不确定性分布": "",
+              "是否基准流": "",
+              "数据来源": [
+                {
+                  "type": "source data set",
+                  "version": "01.01.000",
+                  "description": {
+                    "zh": "上海市自来水厂实地调研数据",
+                    "en": "Field Research Data from multiple water supply plants in Shanghai"
+                  }
+                }
+              ],
+              "流类型": "Waste flow",
+              "流分类": [
+                {
+                  "level": "0",
+                  "classId": "9",
+                  "name": "Community, social and personal services"
+                },
+                {
+                  "level": "1",
+                  "classId": "94",
+                  "name": "Sewage and waste collection, treatment and disposal and other environmental protection services"
+                },
+                {
+                  "level": "2",
+                  "classId": "941",
+                  "name": "Sewerage, sewage treatment and septic tank cleaning services"
+                },
+                {
+                  "level": "3",
+                  "classId": "9411",
+                  "name": "Sewerage and sewage treatment services"
+                },
+                {
+                  "level": "4",
+                  "classId": "94110",
+                  "name": "Sewerage and sewage treatment services"
+                }
+              ]
+            }
+          ],
+          "rowCount": 3
+        }
+      ],
+      "pageStatus": "api_projected",
+      "extractedAt": "2026-05-20T09:33:21.206Z"
+    }
+  ]
+}

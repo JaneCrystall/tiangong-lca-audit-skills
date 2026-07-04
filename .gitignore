@@ -1,0 +1,17 @@
+cases/*
+!cases/.gitkeep
+.env
+.env.*
+!.env.example
+secrets/
+outputs/
+tmp/
+node_modules/
+.venv/
+__pycache__/
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
